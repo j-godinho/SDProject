@@ -13,8 +13,8 @@
 		<s:text name="Register" />
 	    <s:form action="registration" method="post">
 	    <s:textfield name="registrationBean.username" />
-	    <s:textfield name="registrationBean.password1" />
-	    <s:textfield name="registrationBean.password2" />
+	    <s:password name="registrationBean.password1" />
+	    <s:password name="registrationBean.password2" />
 	    <s:submit value="Register"/>
 		</s:form>    
 </body>

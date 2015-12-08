@@ -22,8 +22,9 @@ public class Authentication extends ActionSupport implements SessionAware{
 	
 	@Override
 	public String execute() throws Exception {
-		String loggedUser = null;
 		
+		/*
+		String loggedUser = null;
 		
 		if(session.containsKey("username")){
 			loggedUser = (String)session.get("username");
@@ -33,7 +34,7 @@ public class Authentication extends ActionSupport implements SessionAware{
 		{
 			return SUCCESS;
 		}
-		
+		*/
 		
 		if(!getAuthenticationBean().getUsername().equals("")&& !getAuthenticationBean().getPassword().equals(""))
 		{
@@ -45,8 +46,9 @@ public class Authentication extends ActionSupport implements SessionAware{
 				}
 				else
 				{
-					//tratar do erro
+					session.put("AuthenticationError", "Invalid Username or Password");
 					System.out.println("Wrong credentials");
+					
 				}
 				
 			}catch(RemoteException e){

@@ -11,10 +11,16 @@
 </head>
 <body>
 
+	<c:if test="${session.AuthenticationError != null}">
+		<h3><font color="blue"><c:out value="${ session.AuthenticationError }"/></font></h3>
+		<c:remove var="AuthenticationError" scope="session" />
+	</c:if>
+	<hr>
+	
 	<s:text name="Login" />
 	    <s:form action="authentication" method="post">
 	    <s:textfield name="AuthenticationBean.username" />
-	    <s:textfield name="AuthenticationBean.password" />
+	    <s:password name="AuthenticationBean.password" />
 	    <s:submit value="Login"/>
 		</s:form>    
 	

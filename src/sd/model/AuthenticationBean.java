@@ -17,7 +17,6 @@ public class AuthenticationBean {
 	private RMIServerInterface server;
 	
 	
-	
 	public String encryptPassword(String base) {
         MessageDigest digest = null;
 		try {
@@ -52,13 +51,16 @@ public class AuthenticationBean {
 		Client client = new Client(username, encryptPassword(password));
 		try {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
+			System.out.println("RMI Connected");
 			try {
 				resp = server.checkUser(client);
 				if(resp.isSuccess()){
 					if(resp.isValue()){
+						System.out.println("User/password correct");
 						return 0;
 					}
 					else{
+						System.out.println("User/password incorrect");
 						return -1;
 					}
 					
