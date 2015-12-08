@@ -11,11 +11,10 @@ import common.Client;
 import common.Response;
 import rmiserver.RMIServerInterface;
 
-public class AuthenticationBean {
+public class RegistrationBean {
 
-	private String username, password;
+	private String username, password1, password2;
 	private RMIServerInterface server;
-	
 	
 	
 	public String encryptPassword(String base) {
@@ -45,23 +44,21 @@ public class AuthenticationBean {
     
 	}
 
-	
-	public int authenticate() throws RemoteException{
+	public int register() throws RemoteException{
+		
+		if(!password1.equals(password2)){
+			return -1;
+		}
 		
 		Response resp = new Response();
-		Client client = new Client(username, encryptPassword(password));
+		
+		Client client = new Client(username, encryptPassword(password1));
 		try {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			try {
-				resp = server.checkUser(client);
+				resp = server.registerUser(client);
 				if(resp.isSuccess()){
-					if(resp.isValue()){
-						return 0;
-					}
-					else{
-						return -1;
-					}
-					
+					return 0;
 				}
 				return -1;
 				
@@ -77,35 +74,39 @@ public class AuthenticationBean {
 		
 	}
 
-
 	public String getUsername() {
 		return username;
 	}
-
 
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-
-	public String getPassword() {
-		return password;
+	public String getPassword1() {
+		return password1;
 	}
 
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword1(String password1) {
+		this.password1 = password1;
 	}
 
+	public String getPassword2() {
+		return password2;
+	}
+
+	public void setPassword2(String password2) {
+		this.password2 = password2;
+	}
 
 	public RMIServerInterface getServer() {
 		return server;
 	}
 
-
 	public void setServer(RMIServerInterface server) {
 		this.server = server;
 	}
-	
+
+
+
 	
 }

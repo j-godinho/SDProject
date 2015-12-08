@@ -43,9 +43,20 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       <result>/login.jsp</result>
     </action>
     
+    <action name="register" class="">
+      <result>/register.jsp</result>
+    </action>
+    
+    <!-- ir para o menu -->
     <action name="authentication" class="sd.action.Authentication" method="execute">
     	<result name="success">/index.jsp</result>
     </action>
+
+	<action name="registration" class="sd.action.Registration" method="execute">
+    	<result name="success">/index.jsp</result>
+    </action>
+	
+
 
 	<!-- 'primes' action calls 'execute' in 'PrimesAction', followed by the view in 'primes.jsp' -->
     <action name="primes" class="sd.action.PrimesAction" method="execute">
