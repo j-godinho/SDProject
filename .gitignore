@@ -42,4 +42,4 @@ local.properties
 .springBeans
 /build/
 
-MANIFEST.MF	
+WebContent/META-INF/MANIFEST.MF
