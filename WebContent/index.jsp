@@ -34,7 +34,31 @@
 		</s:form>	
 		<s:form action="logout" method="get">
 			<input type="submit" value="logout" >
+		</s:form>
+		
+		<s:form action="consultAccount" method="get">
+			<input type="submit" value="Consult Account" >
+		</s:form>
+		<s:form action="rewards" method="get">
+			<input type="submit" value="Rewards" >
 		</s:form>  
+		<s:form action="donateMoney" method="get">
+			<input type="submit" value="Donate Money" >
+		</s:form>  
+		<s:form action="sendMessage" method="get">
+			<input type="submit" value="Send Message To Project" >
+		</s:form>  
+		<s:form action="createProject" method="get">
+			<input type="submit" value="Create Project" >
+		</s:form>  
+		<s:form action="rewardsUpdate" method="get">
+			<input type="submit" value="Add or Remove Rewards" >
+		</s:form>
+		  
+		<s:form action="answerMessages" method="get">
+			<input type="submit" value="answerMessages">
+		</s:form>  
+		    
 	</c:if>
 	
 	<c:if test="${session.username == null}">
@@ -48,16 +72,14 @@
 		<s:form action="projDetails" method="get">
 			<input type="submit" value="Show Project Details">
 		</s:form>
-		
 		<s:form action="register" method="get">
-		<input type="submit" value="Register">
-	</s:form>
-	<s:form action="login" method="get">
-		<input type="submit" value="Login">
-	</s:form>  
+			<input type="submit" value="Register">
+		</s:form>
+		<s:form action="login" method="get">
+			<input type="submit" value="Login">
+		</s:form>  
 			
 	</c:if>
-	
 	
 
 	<input type="button" value="Exit" onclick="self.close()">
