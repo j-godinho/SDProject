@@ -20,8 +20,7 @@ public class Authentication extends ActionSupport implements SessionAware{
 	}
 	
 	
-	@Override
-	public String execute() throws Exception {
+	public String login() throws Exception {
 		
 		/*
 		String loggedUser = null;
@@ -48,6 +47,7 @@ public class Authentication extends ActionSupport implements SessionAware{
 				{
 					session.put("AuthenticationError", "Invalid Username or Password");
 					System.out.println("Wrong credentials");
+					return ("error_login");
 					
 				}
 				
@@ -55,6 +55,14 @@ public class Authentication extends ActionSupport implements SessionAware{
 				e.printStackTrace();
 			}
 		}
+		return SUCCESS;
+	}
+	
+	public String logout(){
+		session.clear();
+		//session.invalidate(); 
+		
+		
 		return SUCCESS;
 	}
 	

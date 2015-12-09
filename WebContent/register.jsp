@@ -6,9 +6,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles.css">
 <title>Register</title>
 </head>
 <body>
+	
+	<p><a href="<s:url action="index" />">Back</a></p>
+	
+	<c:if test="${session.username!= null}">
+		<h3><font color="black" id="username"><c:out  value="Username: ${ session.username}"/></font></h3>
+	</c:if>
+	<hr>
 	
 		<s:text name="Register" />
 	    <s:form action="registration" method="post">

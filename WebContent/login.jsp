@@ -6,19 +6,31 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="styles.css">
 <title>Login</title>
 
 </head>
 <body>
 
+	<!-- Top part -->
+	<p><a href="<s:url action="index" />">Back</a></p>
+	
+	<c:if test="${session.username!= null}">
+		<h3><font color="black" id="username"><c:out  value="Username: ${ session.username}"/></font></h3>
+	</c:if>
+	<hr>
+	
 	<c:if test="${session.AuthenticationError != null}">
-		<h3><font color="blue"><c:out value="${ session.AuthenticationError }"/></font></h3>
+		<h3><font color="red"><c:out value="${ session.AuthenticationError }"/></font></h3>
 		<c:remove var="AuthenticationError" scope="session" />
 	</c:if>
 	<hr>
 	
+	<!-- Top part -->
+	
+	
 	<s:text name="Login" />
-	    <s:form action="authentication" method="post">
+	    <s:form action="loginUser" method="post">
 	    <s:textfield name="AuthenticationBean.username" />
 	    <s:password name="AuthenticationBean.password" />
 	    <s:submit value="Login"/>

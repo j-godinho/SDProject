@@ -78,6 +78,8 @@ public class AuthenticationBean {
 		return -1;
 		
 	}
+	
+	
 
 
 	public String getUsername() {
