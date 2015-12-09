@@ -24,8 +24,10 @@
 	<br>
 	<s:text name="Choose projectID" />
 	<s:textfield name="ProjDetailsBean.choice" />
+	<s:submit></s:submit>
 	
-	<c:forEach items="${availableProjects.projects}" var="value">
+	
+	<c:forEach items="${projectDetailsBean.detail}" var="value">
 		<c:out value="${value}" /><br>
 	</c:forEach>
 
