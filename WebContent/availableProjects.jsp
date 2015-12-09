@@ -19,6 +19,7 @@
 	
 	
 	<s:text name="Available projects" />
+	<br>	
 	<c:forEach items="${availableProjects.projects}" var="value">
 		<c:out value="${value}" /><br>
 	</c:forEach>

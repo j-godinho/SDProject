@@ -14,11 +14,6 @@
 
 	<!-- Top part -->
 	<p><a href="<s:url action="index" />">Back</a></p>
-	
-	<c:if test="${session.username!= null}">
-		<h3><font color="black" id="username"><c:out  value="Username: ${ session.username}"/></font></h3>
-		<h3><font color="black" id="money"><c:out  value="Money: ${ session.money}"/></font></h3>
-	</c:if>
 	<hr>
 	
 	<c:if test="${session.AuthenticationError != null}">
