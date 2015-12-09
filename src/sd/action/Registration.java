@@ -29,7 +29,7 @@ public class Registration extends ActionSupport implements SessionAware{
 				if(getRegistrationBean().register()==0)
 				{
 					session.put("username", getRegistrationBean().getUsername());
-					session.put("password", getRegistrationBean().getCode());
+					//session.put("password", getRegistrationBean().getCode());
 					System.out.println("Registered user");
 				}
 				else

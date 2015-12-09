@@ -47,6 +47,10 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       <result>/register.jsp</result>
     </action>
     
+    <action name="sendMessage" class="">
+      <result>/sendMessage.jsp</result>
+    </action>
+    
   	
     
   	<action name="rewards" class="sd.action.RewardsAction" method="execute">
@@ -76,11 +80,15 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     	<result name="success">/index.jsp</result>
     </action>
 	
-	
+	<action name="sendMessageProject" class="sd.action.SendMessageAction" method="execute">
+    	<result name="success">/index.jsp</result>
+    </action>
+    
 	<action name="consultAccount" class="sd.action.AccountMoneyAction" method="execute">
     	<result name="success">/index.jsp</result>
     </action>
 	
+
 
 	<!-- 'primes' action calls 'execute' in 'PrimesAction', followed by the view in 'primes.jsp' -->
     <action name="primes" class="sd.action.PrimesAction" method="execute">
