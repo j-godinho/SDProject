@@ -42,6 +42,7 @@ public class Authentication extends ActionSupport implements SessionAware{
 				{
 					session.put("username", getAuthenticationBean().getUsername());
 					System.out.println("User logged in");
+					return SUCCESS;
 				}
 				else
 				{

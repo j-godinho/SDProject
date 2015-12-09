@@ -15,31 +15,48 @@
 	</c:if>
 	<hr>
 	
-	<s:text name="Prime numbers needed?" />
+		<s:text name="Prime numbers needed?" />
 	<s:form action="primes" method="post">
 		<s:textfield name="primesBean.number" />
 		<s:submit />
 	</s:form>
 	
-	<s:form action="availableProjects" method="get">
-		<input type="submit" value="Show Available Projects">
-	</s:form>
-	<s:form action="olderProjects" method="get">
-		<input type="submit" value="Show Older Projects">
-	</s:form>
-	<s:form action="projDetails" method="get">
-		<input type="submit" value="Show Project Details">
-	</s:form>
-	<s:form action="register" method="post">
+	<c:if test="${session.username!= null}">
+		
+		<s:form action="availableProjects" method="get">
+			<input type="submit" value="Show Available Projects">
+		</s:form>
+		<s:form action="olderProjects" method="get">
+			<input type="submit" value="Show Older Projects">
+		</s:form>
+		<s:form action="projDetails" method="get">
+			<input type="submit" value="Show Project Details">
+		</s:form>	
+		<s:form action="logout" method="get">
+			<input type="submit" value="logout" >
+		</s:form>  
+	</c:if>
+	
+	<c:if test="${session.username == null}">
+		
+		<s:form action="availableProjects" method="get">
+			<input type="submit" value="Show Available Projects">
+		</s:form>
+		<s:form action="olderProjects" method="get">
+			<input type="submit" value="Show Older Projects">
+		</s:form>
+		<s:form action="projDetails" method="get">
+			<input type="submit" value="Show Project Details">
+		</s:form>
+		
+		<s:form action="register" method="get">
 		<input type="submit" value="Register">
 	</s:form>
-	<s:form action="login" method="post">
+	<s:form action="login" method="get">
 		<input type="submit" value="Login">
 	</s:form>  
-	
-	<s:form action="logout" method="post">
-		<input type="submit" value="logout" >
-	</s:form>  
+			
+	</c:if>
 	
 	
 
