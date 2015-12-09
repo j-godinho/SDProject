@@ -56,7 +56,7 @@
 		</s:form>
 		  
 		<s:form action="answerMessages" method="get">
-			<input type="submit" value="answerMessages">
+			<input type="submit" value="Answer Messages">
 		</s:form>  
 		    
 	</c:if>
