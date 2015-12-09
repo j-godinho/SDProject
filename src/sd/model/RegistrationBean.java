@@ -14,6 +14,7 @@ import rmiserver.RMIServerInterface;
 public class RegistrationBean {
 
 	private String username, password1, password2;
+	private String code;
 	private RMIServerInterface server;
 	
 	
@@ -51,8 +52,8 @@ public class RegistrationBean {
 		}
 		
 		Response resp = new Response();
-		
-		Client client = new Client(username, encryptPassword(password1));
+		setCode(encryptPassword(password1));
+		Client client = new Client(username, getCode());
 		try {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			try {
@@ -104,6 +105,14 @@ public class RegistrationBean {
 
 	public void setServer(RMIServerInterface server) {
 		this.server = server;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 

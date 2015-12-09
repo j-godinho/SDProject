@@ -12,6 +12,7 @@
 
 	<c:if test="${session.username!= null}">
 		<h3><font color="black" id="username"><c:out  value="Username: ${ session.username}"/></font></h3>
+		<h3><font color="black" id="money"><c:out  value="Money: ${ session.clientMoney}"/></font></h3>
 	</c:if>
 	<hr>
 	
@@ -32,9 +33,6 @@
 		<s:form action="projDetails" method="get">
 			<input type="submit" value="Show Project Details">
 		</s:form>	
-		<s:form action="logout" method="get">
-			<input type="submit" value="logout" >
-		</s:form>
 		
 		<s:form action="consultAccount" method="get">
 			<input type="submit" value="Consult Account" >
@@ -59,6 +57,11 @@
 			<input type="submit" value="Answer Messages">
 		</s:form>  
 		    
+		<hr>
+		<s:form action="logout" method="get">
+			<input type="submit" value="logout" >
+		</s:form>
+		    
 	</c:if>
 	
 	<c:if test="${session.username == null}">
@@ -82,7 +85,6 @@
 	</c:if>
 	
 
-	<input type="button" value="Exit" onclick="self.close()">
 	     
 </body>
 </html>

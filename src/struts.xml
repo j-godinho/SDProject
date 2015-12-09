@@ -47,6 +47,8 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
       <result>/register.jsp</result>
     </action>
     
+    
+    
     <!-- ir para o menu -->
     <action name="loginUser" class="sd.action.Authentication" method="login">
     	<result name="success">/index.jsp</result>
@@ -60,6 +62,11 @@ and should reside on the classpath of the webapp (generally /WEB-INF/classes). -
     
 
 	<action name="registration" class="sd.action.Registration" method="execute">
+    	<result name="success">/index.jsp</result>
+    </action>
+	
+	
+	<action name="consultAccount" class="sd.action.AccountMoneyAction" method="execute">
     	<result name="success">/index.jsp</result>
     </action>
 	
