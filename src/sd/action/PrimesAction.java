@@ -22,7 +22,7 @@ public class PrimesAction extends ActionSupport implements SessionAware {
 
 	public PrimesBean getPrimesBean() {
 		System.out.println("Action: getPrimesBean");
-		if(!session.containsKey("primesBean"))
+		if (!session.containsKey("primesBean"))
 			this.setPrimesBean(new PrimesBean());
 		return (PrimesBean) session.get("primesBean");
 	}

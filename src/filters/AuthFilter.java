@@ -18,12 +18,12 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/AuthFilter")
 public class AuthFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public AuthFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * Default constructor.
+	 */
+	public AuthFilter() {
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -35,30 +35,30 @@ public class AuthFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		
+
 		System.out.println("doFilter function");
-		
+
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
-		
+
 		String uri = req.getRequestURI();
-		
+
 		HttpSession session = req.getSession(false);
 
-		
-		if((session == null || session.getAttribute("username") == null) 
-				&& !(uri.endsWith("SDProjectGit/") || uri.endsWith("index.jsp") || uri.endsWith("error.jsp")|| uri.endsWith("availableProjects.jsp")||uri.endsWith("olderProjects.jsp")
-						|| uri.endsWith("login.jsp") || uri.endsWith("register.jsp")|| uri.endsWith("projDetails.jsp") || uri.endsWith("/ws") || uri.endsWith("/style.css"))){
-			
-		if(session == null){
+		if ((session == null || session.getAttribute("username") == null) && !(uri.endsWith("SDProjectGit/")
+				|| uri.endsWith("index.jsp") || uri.endsWith("error.jsp") || uri.endsWith("availableProjects.jsp")
+				|| uri.endsWith("olderProjects.jsp") || uri.endsWith("login.jsp") || uri.endsWith("register.jsp")
+				|| uri.endsWith("projDetails.jsp") || uri.endsWith("/ws") || uri.endsWith("/style.css"))) {
+
+			if (session == null) {
 				session = req.getSession();
 			}
-			session.setAttribute("authErrorNC","Please Log in");
+			session.setAttribute("authErrorNC", "Please Log in");
 			res.sendRedirect("index.jsp");
-		}
-		else{
+		} else {
 			chain.doFilter(request, response);
 		}
 	}

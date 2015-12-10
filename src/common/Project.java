@@ -4,127 +4,123 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Project implements Serializable {
-    private int id;
-    private String name;
-    private Client admin;
-    private String description;
-    private int money;
-    private int mainGoal;
-    private Data deadline;
-    private Answer choices;
-    private ArrayList <Reward> rewards = new ArrayList<>();
-    //private ArrayList <String> goals;
-    private ArrayList <Message> messages = new ArrayList<>();
+	private int id;
+	private String name;
+	private Client admin;
+	private String description;
+	private int money;
+	private int mainGoal;
+	private Data deadline;
+	private Answer choices;
+	private ArrayList<Reward> rewards = new ArrayList<>();
+	// private ArrayList <String> goals;
+	private ArrayList<Message> messages = new ArrayList<>();
 
-    Project(){}
+	Project() {
+	}
 
+	Project(String name, Client admin, String description, int money, Data deadline, int mainGoal, ArrayList rewards) {
+		setName(name);
+		setDescription(description);
+		setMoney(money);
+		setRewards(rewards);
+		setDeadline(deadline);
+		setAdmin(admin);
+		setMainGoal(mainGoal);
 
-    Project(String name, Client admin, String description,int money, Data deadline, int mainGoal, ArrayList rewards)
-    {
-        setName(name);
-        setDescription(description);
-        setMoney(money);
-        setRewards(rewards);
-        setDeadline(deadline);
-        setAdmin(admin);
-        setMainGoal(mainGoal);
+	}
 
-    }
-    Project( String name, Client admin, String description,int money,  Data date, int mainGoal, ArrayList rewards,   Answer choices)
-    {
-        setName(name);
-        setDescription(description);
-        setMoney(money);
-        setRewards(rewards);
-        setDeadline(date);
-        setMainGoal(mainGoal);
-        setAdmin(admin);
-        setChoices(choices);
-    }
+	Project(String name, Client admin, String description, int money, Data date, int mainGoal, ArrayList rewards,
+			Answer choices) {
+		setName(name);
+		setDescription(description);
+		setMoney(money);
+		setRewards(rewards);
+		setDeadline(date);
+		setMainGoal(mainGoal);
+		setAdmin(admin);
+		setChoices(choices);
+	}
 
+	// GETTERS AND SETTERS
 
+	public int getMainGoal() {
+		return mainGoal;
+	}
 
-    //GETTERS AND SETTERS
+	public void setMainGoal(int mainGoal) {
+		this.mainGoal = mainGoal;
+	}
 
+	public int getMoney() {
+		return money;
+	}
 
+	public void setMoney(int money) {
+		this.money = money;
+	}
 
-    public int getMainGoal() {
-        return mainGoal;
-    }
+	public int getId() {
+		return id;
+	}
 
-    public void setMainGoal(int mainGoal) {
-        this.mainGoal = mainGoal;
-    }
+	public void setId(int id) {
+		this.id = id;
+	}
 
-    public int getMoney() {
-        return money;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setMoney(int money) {
-        this.money = money;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public int getId() {
-        return id;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setId(int id) {
-        this.id = id;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public ArrayList<Reward> getRewards() {
+		return rewards;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setRewards(ArrayList<Reward> rewards) {
+		this.rewards = rewards;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public ArrayList<Message> getMessages() {
+		return messages;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public void setMessages(ArrayList<Message> messages) {
+		this.messages = messages;
+	}
 
-    public ArrayList<Reward> getRewards() {
-        return rewards;
-    }
+	public Data getDeadline() {
+		return deadline;
+	}
 
-    public void setRewards(ArrayList<Reward> rewards) {
-        this.rewards = rewards;
-    }
+	public void setDeadline(Data deadline) {
+		this.deadline = deadline;
+	}
 
-    public ArrayList<Message> getMessages() {
-        return messages;
-    }
+	public Client getAdmin() {
+		return admin;
+	}
 
-    public void setMessages(ArrayList<Message> messages) {
-        this.messages = messages;
-    }
+	public void setAdmin(Client admin) {
+		this.admin = admin;
+	}
 
-    public Data getDeadline() {
-        return deadline;
-    }
+	public Answer getChoices() {
+		return choices;
+	}
 
-    public void setDeadline(Data deadline) {
-        this.deadline = deadline;
-    }
-
-    public Client getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Client admin) {
-        this.admin = admin;
-    }
-
-    public Answer getChoices() {
-        return choices;
-    }
-
-    public void setChoices(Answer choices) {
-        this.choices = choices;
-    }
+	public void setChoices(Answer choices) {
+		this.choices = choices;
+	}
 }

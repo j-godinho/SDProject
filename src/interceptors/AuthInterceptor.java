@@ -11,29 +11,27 @@ public class AuthInterceptor implements Interceptor {
 	@Override
 	public void destroy() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public String intercept(ActionInvocation invocation) throws Exception {
 		Map<String, Object> session = invocation.getInvocationContext().getSession();
-		
-		if(session.get("username") != null){
+
+		if (session.get("username") != null) {
 			System.out.println("[AuthInterceptor] @ intercept - OK");
 			return invocation.invoke();
-		}
-		else{
+		} else {
 			System.out.println("[AuthInterceptor] @ intercept - ERROR");
 			session.put("authErrorNC", "Please Log in");
 			return Action.ERROR;
 		}
 	}
-	
 
 }

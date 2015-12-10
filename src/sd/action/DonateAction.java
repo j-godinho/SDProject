@@ -9,8 +9,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-public class DonateAction extends ActionSupport implements SessionAware{
-	
+public class DonateAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = -6308448010643497018L;
 	private Map<String, Object> session;
@@ -20,23 +19,19 @@ public class DonateAction extends ActionSupport implements SessionAware{
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
-	@Override
-	public String execute() throws Exception{	
 
-		if(getDonateBean().donate((String)session.get("username"))==0)
-		{
+	@Override
+	public String execute() throws Exception {
+
+		if (getDonateBean().donate((String) session.get("username")) == 0) {
 			return SUCCESS;
-		}
-		else
-		{
+		} else {
 			System.out.println("Error");
-			
+
 		}
 
 		return SUCCESS;
 	}
-
 
 	public Map<String, Object> getSession() {
 		return session;
@@ -48,7 +43,6 @@ public class DonateAction extends ActionSupport implements SessionAware{
 
 	public void setDonateBean(DonateBean donateBean) {
 		this.donateBean = donateBean;
-	}	
-	
+	}
+
 }
-	
