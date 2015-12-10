@@ -7,11 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="styles.css">
-<title>Send Message</title>
-
+<title>Upgrade Rewards</title>
 </head>
 <body>
-
+	
 	<p><a href="<s:url action="index" />">Back</a></p>
 	
 	<c:if test="${session.username!= null}">
@@ -19,14 +18,23 @@
 	</c:if>
 	<hr>
 	
-	
-	<s:text name="Send Message To Project" />
-	<br>
-	<s:form action="sendMessageProject" method="post">
-	    ProjectID: 	<s:textfield name="sendMessageBean.projectID" type="number"/>
-	    Message: 	<s:textfield name="sendMessageBean.message"  size="100"/>
-	    <s:submit value="Send"/>
+	<!-- TODO  -->
+	<s:text name="Add Reward" />
+    <s:form action="addReward" method="post">
+    <s:textfield name="rewardsAddBean.projectID" type="number" />
+    <s:textfield name="rewardsAddBean.text" />
+    <s:textfield name="rewardsAddBean.money" type="number" />
+    <s:submit value="Add Reward"/>
 	</s:form>    
+	
+	<s:text name="Remove Reward" />
+    <s:form action="removeReward" method="post">
+    <s:textfield name="rewardsRemoveBean.projectID" type="number" />
+    <s:textfield name="rewardsRemoveBean.rewardID" type="number"/>
+    <s:submit value="Remove Reward"/>
+	</s:form>    
+	
+	
 	
 </body>
 </html>

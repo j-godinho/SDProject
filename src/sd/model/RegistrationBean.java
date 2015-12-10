@@ -64,7 +64,6 @@ public class RegistrationBean {
 				return -1;
 				
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

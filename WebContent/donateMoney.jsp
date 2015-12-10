@@ -7,11 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="styles.css">
-<title>Send Message</title>
-
+<title>Donate Money</title>
 </head>
 <body>
-
+	
 	<p><a href="<s:url action="index" />">Back</a></p>
 	
 	<c:if test="${session.username!= null}">
@@ -19,14 +18,14 @@
 	</c:if>
 	<hr>
 	
-	
-	<s:text name="Send Message To Project" />
-	<br>
-	<s:form action="sendMessageProject" method="post">
-	    ProjectID: 	<s:textfield name="sendMessageBean.projectID" type="number"/>
-	    Message: 	<s:textfield name="sendMessageBean.message"  size="100"/>
-	    <s:submit value="Send"/>
+	<!-- TODO  Donate money-->
+	<s:text name="Donate Money" />
+    <s:form action="donate" method="post">
+    <s:textfield name="donateBean.projectID" type="number" />
+    <s:textfield name="donateBean.ammount" type="number"/>
+    <s:submit value="Donate Money"/>
 	</s:form>    
 	
+
 </body>
 </html>

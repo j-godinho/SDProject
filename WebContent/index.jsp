@@ -9,12 +9,18 @@
 <title>SDProject</title>
 </head>
 <body>
-
 	<c:if test="${session.username!= null}">
 		<h3><font color="black" id="username"><c:out  value="Username: ${ session.username}"/></font></h3>
 		<h3><font color="black" id="money"><c:out  value="Money: ${ session.clientMoney}"/></font></h3>
 	</c:if>
 	<hr>
+	
+	<c:if test="${session.authErrorNC!= null}">
+		<h3><font color="red"><c:out  value="${session.authErrorNC}"/></font></h3>
+		<c:remove var="authErrorNC" scope="session" />
+	</c:if>
+	<hr>
+		
 	
 		<s:text name="Prime numbers needed?" />
 	<s:form action="primes" method="post">
