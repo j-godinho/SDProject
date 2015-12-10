@@ -42,9 +42,6 @@
 			<input type="submit" value="Show Available Projects">
 		</s:form>
 		
-		
-		<a href="<s:url value='/availableProjects.action'/>">AvailableProjects</a><br>
-		
 		<s:form action="olderProjects" method="get">
 			<input type="submit" value="Show Older Projects">
 		</s:form>
