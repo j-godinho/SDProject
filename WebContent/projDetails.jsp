@@ -17,15 +17,10 @@
 	</c:if>
 	<hr>
 	
-	<s:text name="Available projects" />
-	<c:forEach items="${availableProjects.projects}" var="value">
-		<c:out value="${value}" /><br>
-	</c:forEach>
-	<br>
-	<s:text name="Choose projectID" />
-	<s:textfield name="ProjDetailsBean.choice" />
+	<s:text name="Project Details" />	  
 	
-	<c:forEach items="${availableProjects.projects}" var="value">
+	
+	<c:forEach items="${projectDetails.details}" var="value">
 		<c:out value="${value}" /><br>
 	</c:forEach>
 

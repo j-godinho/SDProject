@@ -30,8 +30,10 @@
 		<s:form action="olderProjects" method="get">
 			<input type="submit" value="Show Older Projects">
 		</s:form>
+		
 		<s:form action="projDetails" method="get">
-			<input type="submit" value="Show Project Details">
+		<s:textfield name="projectDetailsBean.choice" />
+		<s:submit />
 		</s:form>	
 		
 		<s:form action="consultAccount" method="get">

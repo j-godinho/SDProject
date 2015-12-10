@@ -16,49 +16,35 @@ public class ProjectDetailsBean {
     static int registryNumber;
 	private Registry registry;
 	private ArrayList<String> projects;
-	private int choice;
+	private String choice;
+	ArrayList <String> details = new ArrayList <String>();
 	//public Configs configs = new Configs();
 	
+	public void setDetails(ArrayList<String> details) {
+		this.details = details;
+	}
+
 	public ProjectDetailsBean(){
-		getProjects();
 		getDetails();
 	}
 	
 	public ArrayList<String> getDetails(){
-		ArrayList<String> detail = null;
-		Response resp = new Response();
-		try{
-			resp = server.projectDetails(choice);
-			if(resp.isSuccess()){
-				detail = resp.getInfo();
-			}
-		} catch (RemoteException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return detail;
-	}
-	
-	public ArrayList<String> getProjects(){
-		
-		//hostname = configs.getServer1();
-        //hostname2 = configs.getServer2();
-        //registryNumber= configs.getRmi_port();
-		ArrayList <String> projects = new ArrayList <String>();
+		ArrayList <String> details = new ArrayList <String>();
 		Response resp = new Response();
 		try {
 			//registry = LocateRegistry.getRegistry(configs.getRmi_port());
 			//server = (RMIServerInterface) Naming.lookup("RMIServer");
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			System.out.println("RMI connected");
+			System.out.println("choice: " +choice);
 			try {
-				resp = server.listProjects(0);
+				resp = server.projectDetails(Integer.parseInt("1"));
 				if(resp.isSuccess()){
 					if(!resp.getInfo().isEmpty()){
-						projects = resp.getInfo();
+						details = resp.getInfo();
 					}
 					else{
-						projects.add("NENHUM");
+						details.add("NENHUM");
 					}
 					
 				}
@@ -73,17 +59,18 @@ public class ProjectDetailsBean {
 			e.printStackTrace(); // what happens *after* we reach this line?
 		}
 		//projects = server.getAvailableProjects();
-		System.out.println("projects: " +projects);
-		return projects;
+		System.out.println("details: " +details);
+		return details;
 	}
+	
 
 
-	public int getChoice() {
+	public String getChoice() {
 		return choice;
 	}
 
 
-	public void setChoice(int choice) {
+	public void setChoice(String choice) {
 		this.choice = choice;
 	}
 	
