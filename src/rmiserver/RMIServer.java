@@ -685,8 +685,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	public synchronized Response incrementProjectMoney(Client client, int idProject, int idReward) {
 		System.out.println("incrementProjectMoney function");
 		Response temp = new Response();
-
-		Statement stmt = null;
+		
 		ResultSet result = null;
 		PreparedStatement ps = null;
 		try {

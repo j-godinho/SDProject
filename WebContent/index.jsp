@@ -41,6 +41,10 @@
 		<s:form action="availableProjects" method="get">
 			<input type="submit" value="Show Available Projects">
 		</s:form>
+		
+		
+		<a href="<s:url value='/availableProjects.action'/>">AvailableProjects</a><br>
+		
 		<s:form action="olderProjects" method="get">
 			<input type="submit" value="Show Older Projects">
 		</s:form>
@@ -59,6 +63,7 @@
 		<s:form action="donateMoney" method="get">
 			<input type="submit" value="Donate Money">
 		</s:form>
+		
 		<s:form action="sendMessage" method="get">
 			<input type="submit" value="Send Message To Project">
 		</s:form>

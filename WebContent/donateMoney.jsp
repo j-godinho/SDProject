@@ -27,7 +27,7 @@
 	<s:text name="Donate Money" />
 	<s:form action="donate" method="post">
 		<s:textfield name="donateBean.projectID" type="number" />
-		<s:textfield name="donateBean.ammount" type="number" />
+		<s:textfield name="donateBean.rewardID" type="number" />
 		<s:submit value="Donate Money" />
 	</s:form>
 

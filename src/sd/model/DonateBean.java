@@ -10,7 +10,7 @@ import rmiserver.RMIServerInterface;
 
 public class DonateBean {
 
-	private String ammount;
+	private String rewardID;
 	private String projectID;
 	private RMIServerInterface server;
 
@@ -21,11 +21,13 @@ public class DonateBean {
 		try {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			try {
-				resp = server.incrementProjectMoney(new Client(username, null), Integer.parseInt(projectID),
-						Integer.parseInt(ammount));
+				System.out.println("username: "+username + " :projectID: "+projectID+" rewardID: "+rewardID);
+				resp = server.incrementProjectMoney(new Client(username, null), Integer.parseInt(projectID),Integer.parseInt(rewardID));
 				if (resp.isSuccess()) {
+					System.out.println("Sucesso");
 					return 0;
 				}
+				System.out.println("Fracasso");
 				return -1;
 
 			} catch (RemoteException e) {
@@ -39,13 +41,16 @@ public class DonateBean {
 
 	}
 
-	public String getAmmount() {
-		return ammount;
+
+	public String getRewardID() {
+		return rewardID;
 	}
 
-	public void setAmmount(String ammount) {
-		this.ammount = ammount;
+
+	public void setRewardID(String rewardID) {
+		this.rewardID = rewardID;
 	}
+
 
 	public String getProjectID() {
 		return projectID;
