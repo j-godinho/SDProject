@@ -14,28 +14,29 @@ import java.rmi.registry.Registry;
 
 import rmiserver.RMIServerInterface;
 
-public class RewardsBean {
+public class RewardsBean{
 	private RMIServerInterface server;
 	static String hostname;
     static String hostname2;
     static int registryNumber;
 	private Registry registry;
-	
+	private ArrayList<String> rewards;
 	//public Configs configs = new Configs();
 	
-	public RewardsBean(){
-		
-		getRewards();
+
+
+
+	public RewardsBean(String username){
+		getClientRewards(username);
 	}
 	
 	
-	public ArrayList<String> getRewards(){
+	
+	public void getClientRewards(String username){
 		
 		//hostname = configs.getServer1();
         //hostname2 = configs.getServer2();
         //registryNumber= configs.getRmi_port();
-		Client client = new Client((String)session.get("username"), (String)session.get("password"));
-		ArrayList <String> rewards = new ArrayList <String>();
 		Response resp = new Response();
 		try {
 			//registry = LocateRegistry.getRegistry(configs.getRmi_port());
@@ -43,12 +44,12 @@ public class RewardsBean {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			System.out.println("RMI connected");
 			try {
-				resp = server.getClientRewards(client);
+				resp = server.getClientRewards(new Client(username, null));
 				if(resp.isSuccess()){
-					System.out.println("Success rewards");
-					rewards = resp.getInfo();
-				}
-				else{
+					if(!resp.getInfo().isEmpty()){
+						rewards = resp.getInfo();
+						System.out.println("Rewards: " + rewards);
+					}
 					
 				}
 				//projects = server.getAvailableProjects();
@@ -61,21 +62,17 @@ public class RewardsBean {
 		catch(NotBoundException|RemoteException e) {
 			e.printStackTrace(); // what happens *after* we reach this line?
 		}
-		//projects = server.getAvailableProjects();
-		System.out.println("rewards: " +rewards);
+	}
+	
+	
+	public ArrayList<String> getRewards() {
 		return rewards;
 	}
 
-
-	public int getId() {
-		return id;
+	public void setRewards(ArrayList<String> rewards) {
+		this.rewards = rewards;
 	}
 
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	
 	
 }

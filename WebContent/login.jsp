@@ -26,11 +26,11 @@
 	
 	
 	<s:text name="Login" />
-	    <s:form action="loginUser" method="post">
+	<s:form action="loginUser" method="post">
 	    <s:textfield name="AuthenticationBean.username" />
 	    <s:password name="AuthenticationBean.password" />
 	    <s:submit value="Login"/>
-		</s:form>    
+	</s:form>    
 	
 </body>
 </html>

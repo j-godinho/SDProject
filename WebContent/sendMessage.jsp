@@ -7,7 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="styles.css">
-<title>Older Projects</title>
+<title>Send Message</title>
+
 </head>
 <body>
 
@@ -18,10 +19,14 @@
 	</c:if>
 	<hr>
 	
-	<s:text name="Older projects" />
-	<p>
-	<c:forEach items="${olderProjects.projects}" var="value">
-		<c:out value="${value}" /><br>
-	</c:forEach>
+	
+	<s:text name="Send Message To Project" />
+	<br>
+	<s:form action="sendMessageProject" method="post">
+	    ProjectID: 	<s:textfield name="sendMessageBean.projectID"/>
+	    Message: 	<s:textfield name="sendMessageBean.message"  size="100"/>
+	    <s:submit value="Send"/>
+	</s:form>    
+	
 </body>
 </html>
