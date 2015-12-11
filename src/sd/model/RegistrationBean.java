@@ -16,41 +16,40 @@ public class RegistrationBean {
 	private String username, password1, password2;
 	private String code;
 	private RMIServerInterface server;
-	
-	
+
 	public String encryptPassword(String base) {
-        MessageDigest digest = null;
+		MessageDigest digest = null;
 		try {
 			digest = MessageDigest.getInstance("SHA-256");
 		} catch (NoSuchAlgorithmException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        byte[] hash = null;
+		byte[] hash = null;
 		try {
 			hash = digest.digest(base.getBytes("UTF-8"));
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        StringBuffer hexString = new StringBuffer();
+		StringBuffer hexString = new StringBuffer();
 
-        for (int i = 0; i < hash.length; i++) {
-            String hex = Integer.toHexString(0xff & hash[i]);
-            if(hex.length() == 1) hexString.append('0');
-            hexString.append(hex);
-        }
-        return hexString.toString();
-    
-    
+		for (int i = 0; i < hash.length; i++) {
+			String hex = Integer.toHexString(0xff & hash[i]);
+			if (hex.length() == 1)
+				hexString.append('0');
+			hexString.append(hex);
+		}
+		return hexString.toString();
+
 	}
 
-	public int register() throws RemoteException{
-		
-		if(!password1.equals(password2)){
+	public int register() throws RemoteException {
+
+		if (!password1.equals(password2)) {
 			return -1;
 		}
-		
+
 		Response resp = new Response();
 		setCode(encryptPassword(password1));
 		Client client = new Client(username, getCode());
@@ -58,21 +57,19 @@ public class RegistrationBean {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			try {
 				resp = server.registerUser(client);
-				if(resp.isSuccess()){
+				if (resp.isSuccess()) {
 					return 0;
 				}
 				return -1;
-				
+
 			} catch (RemoteException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		}
-		catch(NotBoundException|RemoteException e) {
+		} catch (NotBoundException | RemoteException e) {
 			e.printStackTrace();
 		}
 		return -1;
-		
+
 	}
 
 	public String getUsername() {
@@ -115,7 +112,4 @@ public class RegistrationBean {
 		this.code = code;
 	}
 
-
-
-	
 }

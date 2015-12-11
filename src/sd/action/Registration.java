@@ -9,57 +9,47 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-public class Registration extends ActionSupport implements SessionAware{
+public class Registration extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = 1175671191841904797L;
 	private Map<String, Object> session;
 	private RegistrationBean registrationBean;
-	
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
-	
+
 	@Override
 	public String execute() throws Exception {
-		
-		if(!getRegistrationBean().getUsername().equals("")&& !getRegistrationBean().getPassword1().equals(""))
-		{
-			try{
-				if(getRegistrationBean().register()==0)
-				{
+
+		if (!getRegistrationBean().getUsername().equals("") && !getRegistrationBean().getPassword1().equals("")) {
+			try {
+				if (getRegistrationBean().register() == 0) {
 					session.put("username", getRegistrationBean().getUsername());
-					//session.put("password", getRegistrationBean().getCode());
+					// session.put("password", getRegistrationBean().getCode());
 					System.out.println("Registered user");
-				}
-				else
-				{
-					//tratar do erro
+				} else {
+					// tratar do erro
 					System.out.println("Error on registering user");
 				}
-				
-			}catch(RemoteException e){
+
+			} catch (RemoteException e) {
 				e.printStackTrace();
 			}
 		}
 		return SUCCESS;
 	}
 
-
 	public RegistrationBean getRegistrationBean() {
 		return registrationBean;
 	}
-
 
 	public void setRegistrationBean(RegistrationBean registrationBean) {
 		this.registrationBean = registrationBean;
 	}
 
-
 	public Map<String, Object> getSession() {
 		return session;
 	}
 
-	
-	
 }

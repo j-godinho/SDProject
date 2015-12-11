@@ -2,17 +2,18 @@ package sd.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import sd.model.DonateBean;
 import sd.model.SendMessageBean;
 
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-public class SendMessageAction extends ActionSupport implements SessionAware {
+public class DonateAction extends ActionSupport implements SessionAware {
 
 	private static final long serialVersionUID = -6308448010643497018L;
 	private Map<String, Object> session;
-	private SendMessageBean sendMessageBean;
+	private DonateBean donateBean;
 
 	@Override
 	public void setSession(Map<String, Object> session) {
@@ -22,10 +23,7 @@ public class SendMessageAction extends ActionSupport implements SessionAware {
 	@Override
 	public String execute() throws Exception {
 
-		// setSendMessageBean(new
-		// SendMessageBean((String)session.get("username")));
-
-		if (getSendMessageBean().send((String) session.get("username")) == 0) {
+		if (getDonateBean().donate((String) session.get("username")) == 0) {
 			return SUCCESS;
 		} else {
 			System.out.println("Error");
@@ -39,12 +37,12 @@ public class SendMessageAction extends ActionSupport implements SessionAware {
 		return session;
 	}
 
-	public SendMessageBean getSendMessageBean() {
-		return sendMessageBean;
+	public DonateBean getDonateBean() {
+		return donateBean;
 	}
 
-	public void setSendMessageBean(SendMessageBean sendMessageBean) {
-		this.sendMessageBean = sendMessageBean;
+	public void setDonateBean(DonateBean donateBean) {
+		this.donateBean = donateBean;
 	}
 
 }

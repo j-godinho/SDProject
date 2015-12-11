@@ -7,9 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="styles.css">
-<title>Available Projects</title>
+<title>Upgrade Rewards</title>
 </head>
 <body>
+
 	<p>
 		<a href="<s:url action="index" />">Back</a>
 	</p>
@@ -17,18 +18,27 @@
 	<c:if test="${session.username!= null}">
 		<h3>
 			<font color="black" id="username"><c:out
-					value="Username: ${session.username}" /></font>
+					value="Username: ${ session.username}" /></font>
 		</h3>
 	</c:if>
 	<hr>
 
+	<!-- TODO  -->
+	<s:text name="Add Reward" />
+	<s:form action="addReward" method="post">
+		<s:textfield name="rewardsAddBean.projectID" type="number" />
+		<s:textfield name="rewardsAddBean.text" />
+		<s:textfield name="rewardsAddBean.money" type="number" />
+		<s:submit value="Add Reward" />
+	</s:form>
 
-	<s:text name="Available projects" />
-	<br>
-	<c:forEach items="${availableProjects.projects}" var="value">
-		<c:out value="${value}" />
-		<br>
-	</c:forEach>
+	<s:text name="Remove Reward" />
+	<s:form action="removeReward" method="post">
+		<s:textfield name="rewardsRemoveBean.projectID" type="number" />
+		<s:textfield name="rewardsRemoveBean.rewardID" type="number" />
+		<s:submit value="Remove Reward" />
+	</s:form>
+
 
 
 </body>

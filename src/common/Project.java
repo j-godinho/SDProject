@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Project implements Serializable {
+
     private int id;
     private String name;
     private Client admin;
@@ -127,4 +128,6 @@ public class Project implements Serializable {
     public void setChoices(Answer choices) {
         this.choices = choices;
     }
+
+	
 }
