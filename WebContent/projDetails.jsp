@@ -20,7 +20,7 @@
 
 	<s:text name="Project Details" />	  
 	
-	<c:forEach items="${projectDetailsBean.detail}" var="value">
+	<c:forEach items="${projectDetails.details}" var="value">
 		<c:out value="${value}" /><br>
 	</c:forEach>
 

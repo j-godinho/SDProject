@@ -9,7 +9,7 @@ public class Reward implements Serializable{
 
     Reward(){}
 
-    Reward(String descr, int value)
+    public Reward(String descr, int value)
     {
         setDescr(descr);
         setValue(value);

@@ -830,6 +830,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 
     public Response insertNewProject(Project project) {
         System.out.println("insertNewProject");
+        System.out.println("Name: "+project.getName()+" Desc: "+project.getDescription());
         Response temp = new Response();
 
 
@@ -843,7 +844,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
                 ps.setString(3, project.getDescription());
                 ps.setInt(4, project.getMainGoal());
                 Calendar cal = Calendar.getInstance();
-                cal.set(project.getDeadline().getYear(), project.getDeadline().getMonth(), project.getDeadline().getDay());
+                cal.set(2015, 12, 20);
+                //cal.set(project.getDeadline().getYear(), project.getDeadline().getMonth(), project.getDeadline().getDay());
                 ps.setDate(5, new Date(cal.getTimeInMillis()));
                 c.setAutoCommit(false);
 

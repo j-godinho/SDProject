@@ -19,7 +19,7 @@ public class Project implements Serializable {
     Project(){}
 
 
-    Project(String name, Client admin, String description,int money, Data deadline, int mainGoal, ArrayList rewards)
+    public Project(String name, Client admin, String description,int money, Data deadline, int mainGoal, ArrayList rewards)
     {
         setName(name);
         setDescription(description);
