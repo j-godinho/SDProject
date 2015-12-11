@@ -9,107 +9,6 @@
 
 <struts>
 
-
-  <!-- devMode equals debug information and reload everything for every request -->
-  <constant name="struts.devMode" value="true" />
-  <constant name="struts.ui.theme" value="simple" />
-
-  <package name="primes" extends="struts-default">
-	
-	<default-action-ref name="index" />
-	
-	<global-results>
-		<result name="error">/error.jsp</result>
-	</global-results>
-
-	<!-- all exceptions not caught by the application will lead to error.jsp -->
-	<global-exception-mappings>
-		<exception-mapping exception="java.lang.Exception" result="error" />
-	</global-exception-mappings>
-
-	<!-- 'index' action leads to the view provided by index.jsp -->
-    <action name="index">
-      <result>/index.jsp</result>
-    </action>
-    
-    <action name="availableProjects" class="sd.action.AvailableProjectsAction" method="execute">
-      <result name="success">/availableProjects.jsp</result>
-    </action>
-    
-    <action name="olderProjects" class="sd.action.OlderProjectsAction" method="execute">
-      <result name="success">/olderProjects.jsp</result>
-    </action>
-    
-    <action name="login" class="">
-      <result>/login.jsp</result>
-    </action>
-    
-    <action name="register" class="">
-      <result>/register.jsp</result>
-    </action>
-    
-
-    <action name="sendMessage" class="">
-      <result>/sendMessage.jsp</result>
-    </action>
-    
-    <action name="createProject" class="">
-    	<result>/createProject.jsp</result>
-    </action>
-  	
-    
-  	<action name="rewards" class="sd.action.RewardsAction" method="execute">
-      <result name="success">/rewards.jsp</result>
-    </action>
-    
-  
-    
-
-    <action name="projDetails" class="sd.action.ProjectDetailsAction" method="execute">
-      <result name="success">/projDetails.jsp</result>
-    </action>
-    
-  
-    
-    
-    
-    <!-- ir para o menu -->
-    <action name="loginUser" class="sd.action.Authentication" method="login">
-    	<result name="success">/index.jsp</result>
-	   	<result name="error_login">/login.jsp</result>
-    </action>
-    
-    <action name="logout" class="sd.action.Authentication" method="logout">
-    	<result name="success">/index.jsp</result>
-    </action>
-	
-    
-	<action name="registration" class="sd.action.Registration" method="execute">
-    	<result name="success">/index.jsp</result>
-    </action>
-	
-	<action name="sendMessageProject" class="sd.action.SendMessageAction" method="execute">
-    	<result name="success">/index.jsp</result>
-    	<result name="error">/index.jsp</result>
-    </action>
-    
-    <action name="createProjectSend" class="sd.action.CreateProjectAction" method="execute">
-    	<result name="success">/index.jsp</result>
-    </action>
-    
-	<action name="consultAccount" class="sd.action.AccountMoneyAction" method="execute">
-    	<result name="success">/index.jsp</result>
-    </action>
-	
-	
-
-	<!-- 'primes' action calls 'execute' in 'PrimesAction', followed by the view in 'primes.jsp' -->
-    <action name="primes" class="sd.action.PrimesAction" method="execute">
-      <result name="success">/primes.jsp</result>
-    </action>
-
-  </package>
-=======
 	<!-- devMode equals debug information and reload everything for every request -->
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.ui.theme" value="simple" />
@@ -165,6 +64,10 @@
 		<action name="sendMessage" class="">
 			<result>/sendMessage.jsp</result>
 		</action>
+		
+		 <action name="createProject" class="">
+    		<result>/createProject.jsp</result>
+    	</action>
 
 		<action name="donateMoney" class="">
 			<result>/donateMoney.jsp</result>
@@ -210,6 +113,10 @@
 			<interceptor-ref name="interceptor" />
 			<result name="success">/index.jsp</result>
 		</action>
+		
+		<action name="createProjectSend" class="sd.action.CreateProjectAction" method="execute">
+    		<result name="success">/index.jsp</result>
+    	</action>
 
 		<action name="consultAccount" class="sd.action.AccountMoneyAction"
 			method="execute">
