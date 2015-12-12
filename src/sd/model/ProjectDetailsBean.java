@@ -23,6 +23,7 @@ public class ProjectDetailsBean {
 	}
 
 	public ProjectDetailsBean() {
+		System.out.println("ProjectDetailsBean");
 		getDetails();
 	}
 
@@ -63,6 +64,7 @@ public class ProjectDetailsBean {
 	}
 
 	public void setChoice(String choice) {
+		System.out.println("setChoice: " +choice);
 		this.choice = choice;
 	}
 
