@@ -15,19 +15,11 @@ public class ProjectDetailsBean {
 	static String hostname2;
 	static int registryNumber;
 	private String choice;
-	ArrayList<String> details = new ArrayList<String>();
+	ArrayList <String> details = new ArrayList <>();
 	// public Configs configs = new Configs();
 
-	public void setDetails(ArrayList<String> details) {
-		this.details = details;
-	}
 
-	public ProjectDetailsBean() {
-		System.out.println("ProjectDetailsBean");
-		getDetails();
-	}
-
-	public ArrayList<String> getDetails() {
+	public int getInfo() {
 		Response resp = new Response();
 		try {
 			// registry = LocateRegistry.getRegistry(configs.getRmi_port());
@@ -40,8 +32,10 @@ public class ProjectDetailsBean {
 				if (resp.isSuccess()) {
 					if (!resp.getInfo().isEmpty()) {
 						details = resp.getInfo();
+						return 1;
 					} else {
 						details.add("NENHUM");
+						return 1;
 					}
 
 				}
@@ -56,15 +50,29 @@ public class ProjectDetailsBean {
 		}
 		// projects = server.getAvailableProjects();
 		System.out.println("details: " + details);
+		return -1;
+	}
+
+	
+	
+	public ArrayList<String> getDetails() {
 		return details;
 	}
 
+
+
+	public void setDetails(ArrayList<String> details) {
+		this.details = details;
+	}
+
+
+
 	public String getChoice() {
+		System.out.println("get Choice: "+choice);
 		return choice;
 	}
 
 	public void setChoice(String choice) {
-		System.out.println("setChoice: " +choice);
 		this.choice = choice;
 	}
 
