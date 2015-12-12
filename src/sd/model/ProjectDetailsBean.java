@@ -14,8 +14,6 @@ public class ProjectDetailsBean {
 	static String hostname;
 	static String hostname2;
 	static int registryNumber;
-	private Registry registry;
-	private ArrayList<String> projects;
 	private String choice;
 	ArrayList<String> details = new ArrayList<String>();
 	// public Configs configs = new Configs();
@@ -29,7 +27,6 @@ public class ProjectDetailsBean {
 	}
 
 	public ArrayList<String> getDetails() {
-		ArrayList<String> details = new ArrayList<String>();
 		Response resp = new Response();
 		try {
 			// registry = LocateRegistry.getRegistry(configs.getRmi_port());
@@ -38,7 +35,7 @@ public class ProjectDetailsBean {
 			System.out.println("RMI connected");
 			System.out.println("choice: " + choice);
 			try {
-				resp = server.projectDetails(Integer.parseInt("1"));
+				resp = server.projectDetails(Integer.parseInt(choice));
 				if (resp.isSuccess()) {
 					if (!resp.getInfo().isEmpty()) {
 						details = resp.getInfo();

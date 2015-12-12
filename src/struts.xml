@@ -82,8 +82,7 @@
 
 
 
-		<action name="projDetails" class="sd.action.ProjectDetailsAction"
-			method="execute">
+		<action name="projDetails" class="sd.action.ProjectDetailsAction" method="execute">
 			<result name="success">/projDetails.jsp</result>
 		</action>
 

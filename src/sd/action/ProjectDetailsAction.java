@@ -9,10 +9,9 @@ import sd.model.ProjectDetailsBean;
 import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 
-public class ProjectDetailsAction extends ActionSupport {
+public class ProjectDetailsAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
-	private AvailableProjects availableProjects;
-	private ProjectDetailsBean projDetails;
+	private ProjectDetailsBean projectDetailsBean;
 
 	@Override
 	public String execute() throws Exception {
@@ -20,20 +19,33 @@ public class ProjectDetailsAction extends ActionSupport {
 		// you could execute some business logic here, but for now
 		// the result is "success" and struts.xml knows what to do
 		// setAvailableProjects(new AvailableProjects());
-		setProjectDetails(new ProjectDetailsBean());
+		setProjectDetailsBean(new ProjectDetailsBean());
 		return SUCCESS;
 	}
 
-	public ProjectDetailsBean getProjectDetails() {
-		System.out.println(projDetails);
-		return projDetails;
+	public ProjectDetailsBean getProjectDetailsBean() {
+		System.out.println(projectDetailsBean);
+		return projectDetailsBean;
 
 	}
 
-	public void setProjectDetails(ProjectDetailsBean projDetails) {
+	public void setProjectDetailsBean(ProjectDetailsBean projDetailsBean) {
 		System.out.println("setProjectDetails");
 		// System.out.println(projDetails);
-		this.projDetails = projDetails;
+		this.projectDetailsBean = projDetailsBean;
 	}
+
+	@Override
+	public void setSession(Map<String, Object> session) {
+		// TODO Auto-generated method stub
+		this.session = session;
+		
+	}
+
+	public Map<String, Object> getSession() {
+		return session;
+	}
+	
+
 
 }

@@ -48,6 +48,7 @@ public class CreateProjectBean{
 
 
 	public CreateProjectBean(String username){
+		System.out.println("CreateProjectBean");
 		getProject(username);
 	}
 	
@@ -63,6 +64,7 @@ public class CreateProjectBean{
 			aux = new Reward(rewardsString.get(i), rewardsInt.get(i));
 			rewards.add(aux);
 		}
+		System.out.println("name: "+name);
 		admin = new Client(username, null);
 		project = new Project(name, admin, description, money, deadline,  mainGoal, rewards);
 		Response resp = new Response();
