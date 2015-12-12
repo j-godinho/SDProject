@@ -2,14 +2,16 @@ package sd.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import sd.model.AvailableProjects;
-import sd.model.PrimesBean;
 import sd.model.ProjectDetailsBean;
 
 import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 
 public class ProjectDetailsAction extends ActionSupport implements SessionAware{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8404085238610630922L;
 	private Map<String, Object> session;
 	private ProjectDetailsBean projectDetailsBean;
 
@@ -19,7 +21,10 @@ public class ProjectDetailsAction extends ActionSupport implements SessionAware{
 		// you could execute some business logic here, but for now
 		// the result is "success" and struts.xml knows what to do
 		// setAvailableProjects(new AvailableProjects());
-		setProjectDetailsBean(new ProjectDetailsBean());
+		if(getProjectDetailsBean().getInfo()==1)
+		{
+			return SUCCESS;
+		}
 		return SUCCESS;
 	}
 
@@ -29,10 +34,10 @@ public class ProjectDetailsAction extends ActionSupport implements SessionAware{
 
 	}
 
-	public void setProjectDetailsBean(ProjectDetailsBean projDetailsBean) {
+	public void setProjectDetailsBean(ProjectDetailsBean projectDetailsBean) {
 		System.out.println("setProjectDetails");
 		// System.out.println(projDetails);
-		this.projectDetailsBean = projDetailsBean;
+		this.projectDetailsBean = projectDetailsBean;
 	}
 
 	@Override

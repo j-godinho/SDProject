@@ -51,6 +51,7 @@ public class SendMessageBean {
 	}
 
 	public void setProjectID(String projectID) {
+		System.out.println("projectID: " + projectID);
 		this.projectID = projectID;
 	}
 
