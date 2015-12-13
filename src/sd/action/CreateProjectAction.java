@@ -19,7 +19,7 @@ public class CreateProjectAction extends ActionSupport implements SessionAware{
 	@Override
 	public String execute() {
 		System.out.println("executeCreateProject");
-		if(getCreateProjectBean().getProject((String)session.get("username"))==0){
+		if(getCreateProjectBean().insertProject((String)session.get("username"))==0){
 			return SUCCESS;
 		}
 		else{

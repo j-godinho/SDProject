@@ -7,10 +7,10 @@ public class Data implements Serializable {
 	private int month;
 	private int day;
 
-	Data() {
+	public Data() {
 	}
 
-	Data(int year, int month, int day) {
+	public Data(int year, int month, int day) {
 		setYear(year);
 		setMonth(month);
 		setDay(day);

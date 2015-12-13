@@ -7,7 +7,7 @@ public class Reward implements Serializable {
 	private String descr;
 	private int value;
 
-	Reward() {
+	public Reward() {
 	}
 
 

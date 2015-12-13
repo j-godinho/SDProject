@@ -11,69 +11,19 @@
 
  <link rel="stylesheet" type="text/css" href="/WebSocket/style.css">
     
-
-<script>
-		var rewards = 1;
-		var choices = 1;
-		
-    	function createReward(){
-    		rewards++;
-    		var f = document.getElementById('form');
-
-    		f.appendChild(document.createElement('p'));
-    		
-    		var newReward = document.createElement("input");
-    		
-    		newReward.setAttribute('type', 'text');
-    		newReward.setAttribute('placeholder', "Reward#"+rewards);
-    		newReward.setAttribute('name', 'reward'+rewards);
-    		
-    		f.appendChild(newReward);
-    		//paragrafo
-    		f.appendChild(document.createElement('p'));
-			
-    		var newMoney = document.createElement("input");
-    		
-    		newMoney.setAttribute('type', 'number');
-    		newMoney.setAttribute('placeholder', 'Money#'+rewards);
-    		newMoney.setAttribute('name', 'money'+rewards);
-    		
-    		
-    		
-    		f.appendChild(newMoney);
-    		
-    		f.appendChild(document.createElement('p'));
-    	}
-    		
-    	function createChoice(){
-    		choices++;
-    		var f = document.getElementById('form');
-
-    		f.appendChild(document.createElement('p'));
-    		
-    		var newChoice = document.createElement("input");
-    		
-    		newChoice.setAttribute('type', 'text');
-    		newChoice.setAttribute('placeholder', "Choice#"+choices);
-    		newChoice.setAttribute('name', 'choice'+choices);
-    		
-    		f.appendChild(newChoice);
-    		
-    	}
-    </script>
-    
 </head>
 <body>
 	 
 	<form action="createProjectSend" method="post">
 	  Project Name: <s:textfield name="createProjectBean.name"/><br>
 	  Description: <s:textfield name="createProjectBean.description"/><br>
-	  Goal: <s:number name="createProjectBean.mainGoal"/><br>
-	  Deadline: <s:date name="createProjectBean.deadline"/><br>
-	  Reward#1: <s:textfield name="createProjectBean.rewardsString"/> <br>
-	  Money#1:<s:number name="createProjectBean.rewardsInt"/><br>
-	  Question: <s:textfield name="createProjectBean.question"/><br>
-	  Choice#1: <s:textfield name="createProjectBean.answers"/><br>
+	  Main Goal: <s:textfield name="createProjectBean.mainGoalString"/><br>
+	  Deadline: <s:textfield name="createProjectBean.yearString"/>
+	  			<s:textfield name="createProjectBean.monthString"/>
+	  			<s:textfield name="createProjectBean.dayString"/><br>
+	  
+	  
+	 
 	  <s:submit value="Create Project"/>
 	</form>
 

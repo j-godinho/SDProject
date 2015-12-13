@@ -38,6 +38,11 @@
 
 	<c:if test="${session.username!= null}">
 
+		<s:form action="cancelProject" method="get">
+			<s:textfield name="cancelProjectBean.choice" />
+			<s:submit />
+		</s:form>
+		
 		<s:form action="availableProjects" method="get">
 			<input type="submit" value="Show Available Projects">
 		</s:form>
@@ -74,6 +79,8 @@
 		<s:form action="answerMessages" method="get">
 			<input type="submit" value="Answer Messages">
 		</s:form>
+		
+		
 
 		<hr>
 		<s:form action="logout" method="get">

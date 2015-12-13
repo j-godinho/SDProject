@@ -28,8 +28,8 @@ public class CreateProjectBean{
 	Project project;
 	private String name;
     private Client admin;
-    private String description;
-    private int money;
+    private String description, moneyString, mainGoalString, yearString, monthString, dayString;
+   	private int money;
     private int mainGoal;
     private Data deadline;
     private Answer choices;
@@ -42,30 +42,24 @@ public class CreateProjectBean{
     private String question;
     private ArrayList<String> answers;
 	
-	//public Configs configs = new Configs();
-	
-
-
-
-	public CreateProjectBean(String username){
-		System.out.println("CreateProjectBean");
-		getProject(username);
-	}
+	//public Configs configs = new Configs();	
 	
 	
-	
-	public int getProject(String username){
-		
+	public int insertProject(String username){
+		System.out.println("getProjects");
 		//hostname = configs.getServer1();
         //hostname2 = configs.getServer2();
         //registryNumber= configs.getRmi_port();
-		Reward aux;
+		/*Reward aux;
 		for(int i = 0; i < rewardsString.size(); i++){
 			aux = new Reward(rewardsString.get(i), rewardsInt.get(i));
 			rewards.add(aux);
-		}
+		}*/
 		System.out.println("name: "+name);
 		admin = new Client(username, null);
+		money = 0;
+		deadline = new Data(Integer.parseInt(yearString), Integer.parseInt(monthString), Integer.parseInt(dayString));
+		mainGoal = Integer.parseInt(mainGoalString);
 		project = new Project(name, admin, description, money, deadline,  mainGoal, rewards);
 		Response resp = new Response();
 		try {
@@ -90,7 +84,7 @@ public class CreateProjectBean{
 		catch(NotBoundException|RemoteException e) {
 			e.printStackTrace(); // what happens *after* we reach this line?
 		}
-		return -1;
+		return 0;
 	}
 
 
@@ -213,7 +207,63 @@ public class CreateProjectBean{
 		this.messages = messages;
 	}
 	
-	
+	public String getMoneyString() {
+		return moneyString;
+	}
+
+
+
+	public void setMoneyString(String moneyString) {
+		this.moneyString = moneyString;
+	}
+
+
+
+	public String getMainGoalString() {
+		return mainGoalString;
+	}
+
+
+
+	public void setMainGoalString(String mainGoalString) {
+		this.mainGoalString = mainGoalString;
+	}
+
+
+
+	public String getYearString() {
+		return yearString;
+	}
+
+
+
+	public void setYearString(String yearString) {
+		this.yearString = yearString;
+	}
+
+
+
+	public String getMonthString() {
+		return monthString;
+	}
+
+
+
+	public void setMonthString(String monthString) {
+		this.monthString = monthString;
+	}
+
+
+
+	public String getDayString() {
+		return dayString;
+	}
+
+
+
+	public void setDayString(String dayString) {
+		this.dayString = dayString;
+	}
 	
 
 	
