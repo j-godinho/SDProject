@@ -71,7 +71,7 @@
 			<input type="submit" value="Add or Remove Rewards">
 		</s:form>
 
-		<s:form action="answerMessages" method="get">
+		<s:form action="answerMessage" method="get">
 			<input type="submit" value="Answer Messages">
 		</s:form>
 

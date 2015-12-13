@@ -72,7 +72,8 @@
 		<action name="donateMoney" class="">
 			<result>/donateMoney.jsp</result>
 		</action>
-
+		
+		
 
 		<action name="rewards" class="sd.action.RewardsAction" method="execute">
 			<interceptor-ref name="interceptor" />
@@ -82,12 +83,9 @@
 
 
 
-		<action name="projDetails" class="sd.action.ProjectDetailsAction" method="execute">
+		<action name="projDetails" class="sd.action.ProjectDetailsAction" method="list">
 			<result name="success">/projDetails.jsp</result>
 		</action>
-
-
-
 
 
 		<!-- ir para o menu -->
@@ -125,8 +123,16 @@
 		<action name="donate" class="sd.action.DonateAction" method="execute">
 			<result name="success">/index.jsp</result>
 		</action>
-
-
+		
+		
+		<action name="answerMessage" class="sd.action.AnswerMessageAction" method="list">
+			<result name="success">/answerMessages.jsp</result>
+		</action>
+		
+		<action name="answerMessageAction" class="sd.action.AnswerMessageAction" method="answer">
+			<result name="success">/index.jsp</result>
+		</action>
+		
 
 		<!-- 'primes' action calls 'execute' in 'PrimesAction', followed by the 
 			view in 'primes.jsp' -->
