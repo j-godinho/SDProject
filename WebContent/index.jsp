@@ -112,7 +112,7 @@
 
 	</c:if>
 
-	<%@ include file="notifications.jsp" %>
-	
+
+
 </body>
 </html>
