@@ -1,0 +1,50 @@
+
+#container {
+  width: 450px;
+  float:right;
+  padding: 10px;
+  margin: 20px;
+}
+
+#notifications {
+  height: 180px;
+  border: 1px solid #AACAAC;
+  padding: 5px;
+  font-family: Courier, monospace;
+  font-size: .9em;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+#notifications p {
+  margin: 0;
+  padding: 0;
+}
+
+#projectMoney{
+	float: right;
+	font-weight : bold;
+}
+
+#reward{
+	position: absolute;
+	top: 18%;
+	left: 15%;
+	font-size:25;
+}
+
+#choice{
+	position: absolute;
+	top: 18%;
+	left: 25%;
+	font-size:25;
+}
+
+#createButton{
+	position:absolute;
+	top:5%;
+	left:15%;
+	font-size:30;
+	background:#ccc; 
+}
+
