@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="styles.css">
-<title>Upgrade Rewards</title>
+<title>Update Rewards</title>
 </head>
 <body>
 
@@ -26,16 +26,16 @@
 	<!-- TODO  -->
 	<s:text name="Add Reward" />
 	<s:form action="addReward" method="post">
-		<s:textfield name="rewardsAddBean.projectID" type="number" />
-		<s:textfield name="rewardsAddBean.text" />
-		<s:textfield name="rewardsAddBean.money" type="number" />
+		<s:textfield name="updateRewardsBean.choice"/>
+		<s:textfield name="updateRewardsBean.rewardType"/>
+		<s:textfield name="updateRewardsBean.rewardValue"/>
 		<s:submit value="Add Reward" />
 	</s:form>
 
 	<s:text name="Remove Reward" />
 	<s:form action="removeReward" method="post">
-		<s:textfield name="rewardsRemoveBean.projectID" type="number" />
-		<s:textfield name="rewardsRemoveBean.rewardID" type="number" />
+		<s:textfield name="updateRewardsBean.choice"/>
+		<s:textfield name="updateRewardsBean.rewardID"/>
 		<s:submit value="Remove Reward" />
 	</s:form>
 

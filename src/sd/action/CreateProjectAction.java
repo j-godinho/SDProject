@@ -10,7 +10,9 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 public class CreateProjectAction extends ActionSupport implements SessionAware{
-	private static final long serialVersionUID = 1175671191841904797L;
+	
+	
+	private static final long serialVersionUID = 8584724140467321111L;
 	private Map<String, Object> session;
 	private CreateProjectBean createProjectBean;
 	

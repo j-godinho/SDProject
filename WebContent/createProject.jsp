@@ -21,6 +21,12 @@
 	  Deadline: <s:textfield name="createProjectBean.yearString"/>
 	  			<s:textfield name="createProjectBean.monthString"/>
 	  			<s:textfield name="createProjectBean.dayString"/><br>
+	  RewardType: <s:textfield name ="createProjectBean.rewardType"/><br>
+	  RewardValue: <s:textfield name ="createProjectBean.rewardsValue"/><br>
+	  Question: <s:textfield name ="createProjectBean.question"/><br>
+	  Choice1 : <s:textfield name ="createProjectBean.answers[0]"/><br>
+	  Choice2 : <s:textfield name ="createProjectBean.answers[1]"/><br>
+	  
 	  
 	  
 	 

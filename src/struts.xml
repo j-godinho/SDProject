@@ -68,6 +68,9 @@
 		 <action name="createProject" class="">
     		<result>/createProject.jsp</result>
     	</action>
+    	<action name="rewardsUpdate" class="">
+    		<result>/updateRewards.jsp</result>
+    	</action>
 
 		<action name="donateMoney" class="">
 			<result>/donateMoney.jsp</result>
@@ -83,7 +86,7 @@
 
 
 
-		<action name="projDetails" class="sd.action.ProjectDetailsAction" method="list">
+		<action name="projDetails" class="sd.action.ProjectDetailsAction" method="execute">
 			<result name="success">/projDetails.jsp</result>
 		</action>
 
@@ -111,10 +114,21 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		
+		
+		
 		<action name="createProjectSend" class="sd.action.CreateProjectAction" method="execute">
     		<result name="success">/index.jsp</result>
     	</action>
 
+		<action name="addReward" class="sd.action.UpdateRewardsAction" method = "addReward">
+    		<result name = "success">/index.jsp</result>
+    	</action>
+    	
+    	<action name="removeReward" class="sd.action.UpdateRewardsAction" method = "removeReward">
+    		<result name = "success">/index.jsp</result>
+    	</action>
+    	
+		
 		<action name="consultAccount" class="sd.action.AccountMoneyAction"
 			method="execute">
 			<result name="success">/index.jsp</result>

@@ -31,7 +31,7 @@ public class Project implements Serializable {
         setMainGoal(mainGoal);
 
     }
-    Project( String name, Client admin, String description,int money,  Data date, int mainGoal, ArrayList rewards,   Answer choices)
+    public Project( String name, Client admin, String description,int money,  Data date, int mainGoal, ArrayList rewards,   Answer choices)
     {
         setName(name);
         setDescription(description);

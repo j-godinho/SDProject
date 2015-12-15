@@ -33,14 +33,19 @@ public class CreateProjectBean{
     private int mainGoal;
     private Data deadline;
     private Answer choices;
-    private ArrayList <String> rewardsString = new ArrayList<>();
-    private ArrayList <Integer> rewardsInt = new ArrayList<>();
-    private ArrayList <Reward> rewards = new ArrayList<>();
+    private ArrayList <String> rewardsType = new ArrayList<>();
+    private String rewardType;
+    private String rewardValue;
+    private ArrayList <String> rewardsValue = new ArrayList<>();
+    
+	private ArrayList <Reward> rewards = new ArrayList<>();
     //private ArrayList <String> goals;
     private ArrayList <Message> messages = new ArrayList<>();
     
     private String question;
     private ArrayList<String> answers;
+    
+   
 	
 	//public Configs configs = new Configs();	
 	
@@ -50,17 +55,19 @@ public class CreateProjectBean{
 		//hostname = configs.getServer1();
         //hostname2 = configs.getServer2();
         //registryNumber= configs.getRmi_port();
-		/*Reward aux;
-		for(int i = 0; i < rewardsString.size(); i++){
-			aux = new Reward(rewardsString.get(i), rewardsInt.get(i));
+		Reward aux;
+		for(int i = 0; i < rewardsValue.size(); i++){
+			aux = new Reward(rewardsType.get(i), Integer.parseInt(rewardsValue.get(i)));
 			rewards.add(aux);
-		}*/
+		}
 		System.out.println("name: "+name);
+		System.out.println("rewards: "+rewards);
+		choices = new Answer(question, answers);
 		admin = new Client(username, null);
 		money = 0;
 		deadline = new Data(Integer.parseInt(yearString), Integer.parseInt(monthString), Integer.parseInt(dayString));
 		mainGoal = Integer.parseInt(mainGoalString);
-		project = new Project(name, admin, description, money, deadline,  mainGoal, rewards);
+		project = new Project(name, admin, description, money, deadline,  mainGoal, rewards, choices);
 		Response resp = new Response();
 		try {
 			//registry = LocateRegistry.getRegistry(configs.getRmi_port());
@@ -264,8 +271,67 @@ public class CreateProjectBean{
 	public void setDayString(String dayString) {
 		this.dayString = dayString;
 	}
+
+
+
+	public String getQuestion() {
+		return question;
+	}
+
+
+
+	public void setQuestion(String question) {
+		this.question = question;
+	}
 	
 
-	
+	 public String getRewardType() {
+			return rewardType;
+		}
+
+
+
+		public void setRewardType(String rewardType) {
+			this.rewardType = rewardType;
+			rewardsType.add(rewardType);
+		}
+
+
+
+		public String getRewardValue() {
+			return rewardValue;
+		}
+
+
+
+		public void setRewardValue(String rewardValue) {
+			this.rewardValue = rewardValue;
+			rewardsValue.add(rewardValue);
+		}
+
+
+
+		public ArrayList<String> getRewardsType() {
+			return rewardsType;
+		}
+
+
+
+		public void setRewardsType(ArrayList<String> rewardsType) {
+			
+			this.rewardsType = rewardsType;
+		}
+
+
+
+		public ArrayList<String> getRewardsValue() {
+			return rewardsValue;
+		}
+
+
+
+		public void setRewardsValue(ArrayList<String> rewardsValue) {
+			this.rewardsValue = rewardsValue;
+		}
 	
 }

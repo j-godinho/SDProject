@@ -10,7 +10,7 @@ public class Answer implements Serializable {
 	Answer() {
 	}
 
-	Answer(String question, ArrayList<String> answers) {
+	public Answer(String question, ArrayList<String> answers) {
 		setQuestion(question);
 		setAnswers(answers);
 
