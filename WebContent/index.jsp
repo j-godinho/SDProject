@@ -98,8 +98,10 @@
         var websocket = null;
 
         window.onload = function() { // URI = ws://10.16.0.165:8080/WebSocket/ws
+        	console.log("connected")
             connect('ws://' + window.location.host + '/ws');
             document.getElementById("chat").focus();
+            console.log("onLoad connected")
         }
 
         function connect(host) { // connect to the host websocket
@@ -136,7 +138,7 @@
         }
         
         function onError(event) {
-        	//writeToHistory('Connected to ' + window.location.host + '.')
+        	writeToHistory('Connected to ' + window.location.host + '.' +event)
             writeToHistory('WebSocket error (' + event.data + ').');
             document.getElementById('chat').onkeydown = null;
         }

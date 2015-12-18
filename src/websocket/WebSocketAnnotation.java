@@ -12,6 +12,7 @@ import javax.websocket.OnError;
 import javax.websocket.Session;
 import javax.websocket.*;
 
+
 @ServerEndpoint(value = "/ws")
 public class WebSocketAnnotation {
     private static final AtomicInteger sequence = new AtomicInteger(1);
