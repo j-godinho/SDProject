@@ -231,11 +231,17 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		System.out.println(username);
 		resp.getInfo().add(username);
 		
+		System.out.println(resp);
+		
+		Client client = new Client(username, null);
+		
+		System.out.println("nao existe");
+		registerUserTumblr(client);
+		
 		return resp;
 	}
 	
-	
-	
+
 	//tumblr function finish
 	
 	

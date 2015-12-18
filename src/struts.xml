@@ -138,9 +138,6 @@
 		<action name="cancelProject" class="sd.action.CancelProjectAction" method="execute">
 			<result name="success">/index.jsp</result>
 		</action>
-
-
-
 		
 		<action name="answerMessage" class="sd.action.AnswerMessageAction" method="list">
 			<result name="success">/answerMessages.jsp</result>
@@ -164,7 +161,7 @@
 		</action>
 		
 		<action name="callback" class="sd.action.CallbackAction" method="execute">
-            <result name="success">/index.jsp</result>
+            <result name="success" type="redirect">/index.jsp</result>
             <result name="error">/error.jsp</result>
         </action>
 

@@ -41,8 +41,9 @@ public class CallbackAction extends ActionSupport implements SessionAware {
         	System.out.println("HERE2");
         	resp = getUserBean().loginTumblr(getOauth_verifier());
         }
-        
-        session.put("accessToken", resp.getAccessToken());
+        if(session.get("accessToken")!=null){
+        	session.replace("accessToken", resp.getAccessToken());
+        }
         session.put("username", resp.getInfo().get(0));
         
         return SUCCESS;
