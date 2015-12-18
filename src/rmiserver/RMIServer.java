@@ -75,6 +75,16 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		new RMIServer();
 	}
 
+	
+	public Response getAPPKeys(){
+		Response temp = new Response();
+		ArrayList <String> keys = new ArrayList<>();
+		keys.add(configs.getAppKey());
+		keys.add(configs.getAppSecret());
+		temp.setInfo(keys);
+		return temp;
+	}
+	
 	public void run() {
 		while (true) {
 
