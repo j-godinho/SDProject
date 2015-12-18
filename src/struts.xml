@@ -87,13 +87,6 @@
 		</action>
 
 
-
-
-		<action name="projDetails" class="sd.action.ProjectDetailsAction" method="execute">
-			<result name="success">/projDetails.jsp</result>
-		</action>
-
-
 		<!-- ir para o menu -->
 		<action name="loginUser" class="sd.action.Authentication"
 			method="login">
@@ -155,6 +148,14 @@
 		
 		<action name="answerMessageAction" class="sd.action.AnswerMessageAction" method="answer">
 			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="getProjects" class="sd.action.ProjectDetailsAction" method="list">
+			<result name="success">/listProjects.jsp</result>
+		</action>
+		
+		<action name="projDetails" class="sd.action.ProjectDetailsAction" method="execute">
+			<result name="success">/projDetails.jsp</result>
 		</action>
 		
 

@@ -2,6 +2,7 @@ package sd.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import sd.model.AnswerMessageBean;
 import sd.model.ProjectDetailsBean;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -25,6 +26,13 @@ public class ProjectDetailsAction extends ActionSupport implements SessionAware{
 		{
 			return SUCCESS;
 		}
+		return SUCCESS;
+	}
+	
+	public String list() throws Exception {
+		System.out.println("listProjectDetails");
+		setProjectDetailsBean(new ProjectDetailsBean());
+		getProjectDetailsBean().getProjects();
 		return SUCCESS;
 	}
 

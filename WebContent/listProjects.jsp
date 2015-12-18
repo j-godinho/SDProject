@@ -21,13 +21,20 @@
 		</h3>
 	</c:if>
 	<hr>
+	
+	<s:text name="List of projects" />
 
-	<s:text name="Project Details" />
-
-	<c:forEach items="${projectDetailsBean.details}" var="value">
+	<c:forEach items="${projectDetailsBean.projects}" var="value">
 		<c:out value="${value}" />
 		<br>
 	</c:forEach>
+
+	<s:text name="Project Details" />
+	<br>
+	<s:form action="projDetails" method="post">
+	    ProjectID: 	<s:textfield name="projectDetailsBean.choice" type="string" />
+		<s:submit value="Send" />
+	</s:form>
 
 </body>
 </html>

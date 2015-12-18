@@ -153,9 +153,8 @@
 			<input type="submit" value="Show Older Projects">
 		</s:form>
 
-		<s:form action="projDetails" method="post">
-			<s:textfield name="projectDetailsBean.choice" />
-			<s:submit />
+		<s:form action="getProjects" method="get">
+			<input type="submit" value="Project details">
 		</s:form>
 
 		<s:form action="consultAccount" method="get">
@@ -214,9 +213,8 @@
 			<input type="submit" value="Show Older Projects">
 		</s:form>
 		
-		<s:form action="projDetails" method="post">
-			<s:textfield name="projectDetailsBean.choice" />
-			<s:submit />
+		<s:form action="getProjects" method="get">
+			<input type="submit" value="Project details">
 		</s:form>
 		
 		<s:form action="register" method="get">

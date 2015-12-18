@@ -15,7 +15,7 @@ public class DonateBean {
 	private String projectID, administrator, projectName;
 	private int donation;
 	private RMIServerInterface server;
-	private WebSocketAnnotation wsAnnotation;
+	private WebSocketAnnotation wsAnnotation = new WebSocketAnnotation();
 	
 	public int donate(String username) throws RemoteException {
 
