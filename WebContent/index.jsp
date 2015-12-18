@@ -184,7 +184,12 @@
 		<s:form action="login" method="get">
 			<input type="submit" value="Login">
 		</s:form>
-
+		
+		<s:form action="loginTumblr" method="get">
+			<input type="submit" value="Login With Tumblr">
+		</s:form>
+		
+		
 	</c:if>
 	
 

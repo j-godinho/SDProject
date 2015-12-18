@@ -157,8 +157,14 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		
+
+		<action name="loginTumblr" class="sd.action.LoginTumblrAction" method="execute">
+			<result name="redirect" type="redirect">${authorizationURL}</result>
+		</action>
 		
-		
+		<action name="callback" class="sd.action.CallbackAction" method="execute">
+            <result name="success">/index.jsp</result>
+        </action>
 
 
 		<!-- 'primes' action calls 'execute' in 'PrimesAction', followed by the 
