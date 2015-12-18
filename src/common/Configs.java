@@ -18,6 +18,8 @@ public class Configs {
 	private String data_base;
 	private String admin;
 	private String pass;
+	private String appKey;
+	private String appSecret;
 
 	public Configs() {
 		Properties prop = new Properties();
@@ -51,7 +53,9 @@ public class Configs {
 		setData_base(prop.getProperty("DATA_BASE"));
 		setAdmin(prop.getProperty("ADMIN"));
 		setPass(prop.getProperty("ADMIN_PASS"));
-
+		
+		setAppKey(prop.getProperty("APP_KEY"));
+		setAppSecret(prop.getProperty("APP_SECRET"));
 	}
 
 	public String getServer1() {
@@ -133,4 +137,21 @@ public class Configs {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+
+	public String getAppKey() {
+		return appKey;
+	}
+
+	public void setAppKey(String appKey) {
+		this.appKey = appKey;
+	}
+
+	public String getAppSecret() {
+		return appSecret;
+	}
+
+	public void setAppSecret(String appSecret) {
+		this.appSecret = appSecret;
+	}
+	
 }
