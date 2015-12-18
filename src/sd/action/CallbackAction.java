@@ -1,5 +1,6 @@
 package sd.action;
 
+import com.github.scribejava.core.model.Token;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -22,9 +23,9 @@ public class CallbackAction extends ActionSupport implements SessionAware {
     @Override
     public String execute() {
         System.out.println("user logado com tumblr");
-        System.out.println("OAuthToken: " + getOauth_token());
-        System.out.println("Verifier: " + getOauth_verifier());
-        
+
+        Token accessToken = new Token( getOauth_token(), getOauth_verifier());
+        System.out.println("access token: " + accessToken);
         
         return SUCCESS;
     }

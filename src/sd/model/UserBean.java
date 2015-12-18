@@ -21,6 +21,8 @@ public class UserBean {
 	}
 	
 
+	
+	
 	public int getAppKeys(){
 		RMIServerInterface server;
 		//hostname = configs.getServer1();

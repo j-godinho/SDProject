@@ -29,9 +29,7 @@ public class LoginTumblrAction extends ActionSupport implements SessionAware {
 
 		UserBean userBean = new UserBean();
 		setAuthorizationURL(userBean.getAuthorizationURL());
-        
 		
-        
 		return REDIRECT;
 	}
 
