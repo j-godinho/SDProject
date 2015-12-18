@@ -47,7 +47,7 @@ public class AuthFilter implements Filter {
 		String uri = req.getRequestURI();
 
 		HttpSession session = req.getSession(false);
-
+		
 		if ((session == null || session.getAttribute("username") == null) && !(uri.endsWith("SDProjectGit/")
 				|| uri.endsWith("index.jsp") || uri.endsWith("error.jsp") || uri.endsWith("login.jsp") || uri.endsWith("register.jsp")
 				|| uri.endsWith("projDetails.jsp") || uri.endsWith("/ws") || uri.endsWith("/style.css"))) {

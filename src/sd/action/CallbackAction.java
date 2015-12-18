@@ -29,10 +29,10 @@ public class CallbackAction extends ActionSupport implements SessionAware {
     	
         System.out.println("user logado com tumblr");
         Response resp;
-        if(getOauth_token()==null || getOauth_verifier()==null)
+        if(getOauth_token()=="" || getOauth_verifier()=="")
         {
         	System.out.println("HERE1");
-        	return ERROR;
+        	return SUCCESS;
         }
         else
         {
@@ -45,23 +45,13 @@ public class CallbackAction extends ActionSupport implements SessionAware {
         
         return SUCCESS;
     }
-    
-
-    public UserBean getUserBean() {
-		return userBean;
-	}
-
-	public void setUserBean(UserBean userBean) {
-		this.userBean = userBean;
-	}
-
-	@Override
-    public void setSession(Map<String, Object> session) {
-        this.session = session;
-    }
 
 	public Map<String, Object> getSession() {
 		return session;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
 	}
 
 	public String getOauth_token() {
@@ -79,6 +69,15 @@ public class CallbackAction extends ActionSupport implements SessionAware {
 	public void setOauth_verifier(String oauth_verifier) {
 		this.oauth_verifier = oauth_verifier;
 	}
+
+	public UserBean getUserBean() {
+		return userBean;
+	}
+
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
+	}
     
+
 	
 }
