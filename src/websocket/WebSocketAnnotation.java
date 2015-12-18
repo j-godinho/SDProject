@@ -21,7 +21,7 @@ public class WebSocketAnnotation {
     private static final Set<WebSocketAnnotation> connections = new CopyOnWriteArraySet < >();
     
     public WebSocketAnnotation() {
-        username = "User" + sequence.getAndIncrement();
+    	this.username = "joao";
     }
 
     @OnOpen
@@ -29,7 +29,13 @@ public class WebSocketAnnotation {
         this.session = session;
         connections.add(this);
         String message = "*" + username + "* connected.";
-        sendMessage(message);
+        System.out.println(message);
+        
+        newDonation(	"hugo", 	"joao", 	200, 	"project#1");
+        newDonation(	"joao", 	"hugo", 	100, 	"project#2");
+        newMessage(		"hugo", 	"joao", 			"project#1");
+        newMessage(		"joao", 	"hugo", 			"project#2");
+        updateProjectMoney(100, 200, "joao");
     }
 
     @OnClose
@@ -37,28 +43,34 @@ public class WebSocketAnnotation {
     	// clean up once the WebSocket connection is closed
     	connections.remove(this);
     	String message = "*" + username + "* disconnected.";
-    	sendMessage(message);
+    	System.out.println(message);
     }
 
     @OnMessage
-    public void receiveMessage(String message) {
-		// one should never trust the client, and sensitive HTML
-        // characters should be replaced with &lt; &gt; &quot; &amp;
-    	//String reversedMessage = new StringBuffer(message).reverse().toString();
-    	sendMessage("[" + username + "] " + message);
-    }
+    public void receiveMessage(String message) {}
     
     @OnError
     public void handleError(Throwable t) {
     	t.printStackTrace();
     }
 
-    private void sendMessage(String text) {
-    	// uses *this* object's session to call sendText()
+    private void sendMessage(String text, int option, String usernameToSend) {
     	for(WebSocketAnnotation client: connections){
     		try {
     			synchronized(client){
-    				client.session.getBasicRemote().sendText(text);
+    				if(option==1)
+    				{
+    					//ainda nao funcional-> ver o project Money, atualizar o dinheiro de um projecto
+    					client.session.getBasicRemote().sendText(text);
+    				}
+    				else
+    				{
+    					if(client.username.equals(usernameToSend))
+    					{
+    						client.session.getBasicRemote().sendText(text);
+    					}
+    				}
+    				
     			}	
     		} catch (IOException e) {
     			// clean up once the WebSocket connection is closed
@@ -69,9 +81,26 @@ public class WebSocketAnnotation {
     				e1.printStackTrace();
     			}
     			String message = String.format ("* %s %s" , client.username , " has   been   disconnected ." );
-    			sendMessage( message );
+    			System.out.println(message);
     		}
     	}
     	
+    }
+    
+    public void updateProjectMoney(int received, int money, String administrator)
+    {
+    	String text = ("[1]"+received+"/"+money);
+    	sendMessage(text, 1, administrator);
+    }
+    
+    public void newDonation(String donator, String administrator, int donation, String projectName)
+    {
+    	String text = ("[0]"+donator + " sent " + donation+"€ to your project: "+ projectName);
+    	sendMessage(text, 2, administrator);
+    }
+    public void newMessage(String from, String to, String projectName)
+    {
+    	String text = ("[0]"+from + " sent a message to your project: "+projectName);
+    	sendMessage(text, 2, to);
     }
 }
