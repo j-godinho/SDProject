@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import sd.model.DonateBean;
 import sd.model.SendMessageBean;
 
+
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -14,6 +15,7 @@ public class DonateAction extends ActionSupport implements SessionAware {
 	private static final long serialVersionUID = -6308448010643497018L;
 	private Map<String, Object> session;
 	private DonateBean donateBean;
+	
 
 	@Override
 	public void setSession(Map<String, Object> session) {

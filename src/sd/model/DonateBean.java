@@ -7,13 +7,16 @@ import java.rmi.registry.LocateRegistry;
 import common.Client;
 import common.Response;
 import rmiserver.RMIServerInterface;
+import websocket.WebSocketAnnotation;
 
 public class DonateBean {
 
 	private String rewardID;
-	private String projectID;
+	private String projectID, administrator, projectName;
+	private int donation;
 	private RMIServerInterface server;
-
+	private WebSocketAnnotation wsAnnotation;
+	
 	public int donate(String username) throws RemoteException {
 
 		Response resp = new Response();
@@ -23,7 +26,11 @@ public class DonateBean {
 			try {
 				System.out.println("username: "+username + " :projectID: "+projectID+" rewardID: "+rewardID);
 				resp = server.incrementProjectMoney(new Client(username, null), Integer.parseInt(projectID),Integer.parseInt(rewardID));
+				//administratos = server.getAdministrator(projectID);
+				//donation = server.getDonation(rewardID);
+				//projectName = server.getProjectName(projectID);
 				if (resp.isSuccess()) {
+					//wsAnnotation.newDonation(username, administrator, donation, projectName);
 					System.out.println("Sucesso");
 					return 0;
 				}

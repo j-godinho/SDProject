@@ -7,21 +7,31 @@ import java.rmi.registry.LocateRegistry;
 import common.Client;
 import common.Response;
 import rmiserver.RMIServerInterface;
+import websocket.WebSocketAnnotation;
 
 public class SendMessageBean {
 
 	private String message;
-	private String projectID;
+	private String projectID, from, to;
 	private RMIServerInterface server;
+	private WebSocketAnnotation wsAnnotation = new WebSocketAnnotation();
 
 	public int send(String username) throws RemoteException {
 
 		Response resp = new Response();
+		from = username;
+		to = "hugo";
 
 		try {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
+			
 			try {
 				resp = server.sendMessageToProject(new Client(username, null), Integer.parseInt(projectID), message);
+				//from = username;
+				//to = server.getAdministrator(projectID);
+				System.out.println(from);
+				System.out.println(to);
+				wsAnnotation.newMessage(from, to);
 				if (resp.isSuccess()) {
 					return 0;
 				}

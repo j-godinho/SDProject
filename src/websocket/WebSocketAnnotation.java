@@ -2,6 +2,7 @@ package websocket;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Map;
 import java.util.Set ;
 import java.util.concurrent.CopyOnWriteArraySet ;
 import javax.websocket.server.ServerEndpoint;
@@ -18,10 +19,12 @@ public class WebSocketAnnotation {
     private static final AtomicInteger sequence = new AtomicInteger(1);
     private final String username;
     private Session session;
+    private Map<String, Object> sessionM;
     private static final Set<WebSocketAnnotation> connections = new CopyOnWriteArraySet < >();
     
     public WebSocketAnnotation() {
-    	this.username = "joao";
+    	//this.username = (String) sessionM.get("username");
+    	this.username = "hugo";
     }
 
     @OnOpen
@@ -31,11 +34,11 @@ public class WebSocketAnnotation {
         String message = "*" + username + "* connected.";
         System.out.println(message);
         
-        newDonation(	"hugo", 	"joao", 	200, 	"project#1");
-        newDonation(	"joao", 	"hugo", 	100, 	"project#2");
-        newMessage(		"hugo", 	"joao", 			"project#1");
-        newMessage(		"joao", 	"hugo", 			"project#2");
-        updateProjectMoney(100, 200, "joao");
+        //newDonation(	"hugo", 	"joao", 	200, 	"project#1");
+        //newDonation(	"joao", 	"hugo", 	100, 	"project#2");
+        //newMessage(		"hugo", 	"joao");
+        //newMessage(		"joao", 	"hugo");
+        //updateProjectMoney(100, 200, "joao");
     }
 
     @OnClose
@@ -98,9 +101,20 @@ public class WebSocketAnnotation {
     	String text = ("[0]"+donator + " sent " + donation+"€ to your project: "+ projectName);
     	sendMessage(text, 2, administrator);
     }
-    public void newMessage(String from, String to, String projectName)
+    public void newMessage(String from, String to)
     {
-    	String text = ("[0]"+from + " sent a message to your project: "+projectName);
+    	System.out.println("newMEssage > from:" +from +"to: "+to);
+    	String text = ("[0]"+from + " sent a message");
     	sendMessage(text, 2, to);
     }
+
+	public Map<String, Object> getSessionM() {
+		return sessionM;
+	}
+
+	public void setSessionM(Map<String, Object> sessionM) {
+		this.sessionM = sessionM;
+	}
+    
+    
 }
