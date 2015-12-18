@@ -71,4 +71,6 @@ public interface RMIServerInterface extends Remote {
 	Response insertNewChoice(Answer answer) throws RemoteException;
 
 	Response getQuestion(int id) throws RemoteException;
+
+	Response getAPPKeys() throws RemoteException;
 }
