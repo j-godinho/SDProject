@@ -42,7 +42,7 @@ public class UserBean {
 		}
 	}
 	
-	public Response loginTumblr(String authToken, String authVerifier){
+	public Response loginTumblr(String authVerifier){
 		System.out.println("login tumblr function bean");
 		RMIServerInterface server;
 		Response temp;
@@ -54,7 +54,7 @@ public class UserBean {
 			//server = (RMIServerInterface) Naming.lookup("RMIServer");
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			try {
-				 temp = server.loginTumblr(authToken, authVerifier);
+				 temp = server.loginTumblr(authVerifier);
 				 
 				 return temp;
 

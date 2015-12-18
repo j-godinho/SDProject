@@ -20,12 +20,16 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
 import com.github.scribejava.apis.RenrenApi;
 import com.github.scribejava.apis.TumblrApi;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Token;
 import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.model.Verifier;
 import com.github.scribejava.core.oauth.OAuthService;
 
 import common.Answer;
@@ -47,7 +51,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	Timer time = new Timer();
 	
 	OAuthService service;
-
+	Token requestToken;
 	RMIServer() throws RemoteException, IOException, ClassNotFoundException, SQLException {
 		super();
 
@@ -62,6 +66,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		 * System.out.println("Rmi Server Running...");
 		 */
 		setService();
+		
 		
 		RMIServer s = this;
 		Registry r = LocateRegistry.createRegistry(configs.getRmi_port());
@@ -192,34 +197,44 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
                 .apiSecret(configs.getAppSecret())
                 .callback("http://localhost:8080/SDProjectGit/callback")
                 .build();
+		
 	}
 	
 	public String getAuthorizationURL(){
-		Token requestToken = service.getRequestToken();
-        return service.getAuthorizationUrl(requestToken);
-       
+		requestToken = service.getRequestToken();
+		return service.getAuthorizationUrl(requestToken);
+        
 	}
 
 	
-	public Response loginTumblr(String authToken, String authVerifier){
+	public Response loginTumblr(String authVerifier){
 		System.out.println("login tumblr");
 		Response resp = new Response();
 		resp.setInfo(new ArrayList<String>());
 		
 		//get acessToken
-		Token accessToken = new Token( authToken, authVerifier);
+		Verifier verifier = new Verifier(authVerifier);
+		Token accessToken = service.getAccessToken(requestToken, verifier);
+		
 		resp.setAccessToken(accessToken);
 		
         //get username info
 		System.out.println("Get Username Info");
 		OAuthRequest request = new OAuthRequest(Verb.GET, "https://api.tumblr.com/v2/user/info", service);
 		service.signRequest(accessToken, request);
-		com.github.scribejava.core.model.Response respAPI = request.send();
-		System.out.println(respAPI.getBody());
+		com.github.scribejava.core.model.Response response = request.send();
+		
+		JSONObject body = (JSONObject) JSONValue.parse(response.getBody());
+		JSONObject message = (JSONObject) body.get("response");
+		JSONObject user = (JSONObject) message.get("user");
+		String username= user.get("name").toString();
+		System.out.println(username);
+		resp.getInfo().add(username);
 		
 		return resp;
-		
 	}
+	
+	
 	
 	//tumblr function finish
 	

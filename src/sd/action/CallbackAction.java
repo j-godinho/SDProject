@@ -22,7 +22,9 @@ public class CallbackAction extends ActionSupport implements SessionAware {
 	private UserBean userBean;
 	
 
-    public CallbackAction() {}
+    public CallbackAction() {
+    	userBean = new UserBean();
+    }
 
     @Override
     public String execute() {
@@ -32,12 +34,12 @@ public class CallbackAction extends ActionSupport implements SessionAware {
         if(getOauth_token()=="" || getOauth_verifier()=="")
         {
         	System.out.println("HERE1");
-        	return SUCCESS;
+        	return ERROR;
         }
         else
         {
         	System.out.println("HERE2");
-        	resp = getUserBean().loginTumblr(getOauth_token(), getOauth_verifier());
+        	resp = getUserBean().loginTumblr(getOauth_verifier());
         }
         
         session.put("accessToken", resp.getAccessToken());

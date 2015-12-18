@@ -77,5 +77,5 @@ public interface RMIServerInterface extends Remote {
 	//tumblr
 	Response registerUserTumblr(Client client) throws RemoteException;
 	String getAuthorizationURL() throws RemoteException;
-	Response loginTumblr(String authToken, String authVerifier) throws RemoteException;
+	Response loginTumblr(String authVerifier) throws RemoteException;
 }
