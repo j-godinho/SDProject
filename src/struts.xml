@@ -12,7 +12,7 @@
 	<!-- devMode equals debug information and reload everything for every request -->
 	<constant name="struts.devMode" value="true" />
 	<constant name="struts.ui.theme" value="simple" />
-
+	<constant name="struts.action.excludePattern" value="/ws"/>
 	<package name="primes" extends="struts-default">
 
 		<interceptors>
@@ -76,6 +76,9 @@
 			<result>/donateMoney.jsp</result>
 		</action>
 		
+		<action name="chat" class="">
+			<result>/chat.html</result>
+		</action>
 		
 
 		<action name="rewards" class="sd.action.RewardsAction" method="execute">
@@ -153,6 +156,8 @@
 		<action name="answerMessageAction" class="sd.action.AnswerMessageAction" method="answer">
 			<result name="success">/index.jsp</result>
 		</action>
+		
+		
 		
 
 
