@@ -20,6 +20,8 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
+import com.github.scribejava.core.model.Token;
+
 import common.Answer;
 import common.Client;
 import common.ClientInterface;
@@ -74,7 +76,108 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	public static void main(String args[]) throws SQLException, ClassNotFoundException, IOException {
 		new RMIServer();
 	}
+	
+	
+	//TUMBLR FUNCTIONS
 
+    
+	public Response registerUserTumblr(Client client) {
+		System.out.println("registerTumblr Function");
+		Response temp = new Response();
+		try {
+			if (checkIfExists(client).isValue() == false) {
+
+				PreparedStatement ps = c.prepareStatement(consts.registerTumblr);
+				ps.setString(1, client.getName());
+
+				c.setAutoCommit(false);
+
+				ps.execute();
+				c.commit();
+
+				temp.setSuccess(true);
+			} else {
+				temp.setSuccess(false);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			temp.setSuccess(false);
+		}
+		return temp;
+	}
+
+	public Response insertTumblrProject(Project project, Token accessToken) {
+		System.out.println("insertTumblrProject");
+		Response temp = new Response();
+		TumblrFunctions tumblr =  new TumblrFunctions(accessToken);
+		if (!projectExists(project).isValue()) {
+			try {
+				
+				//get repostkey and postid
+				
+				
+				
+				// DATE
+				PreparedStatement ps = c.prepareStatement(consts.insertTumblrProject);
+				ps.setString(1, project.getName());
+				ps.setString(2, project.getAdmin().getName());
+				ps.setString(3, project.getDescription());
+				ps.setInt(4, project.getMainGoal());
+				Calendar cal = Calendar.getInstance();
+				cal.set(project.getDeadline().getYear(), project.getDeadline().getMonth(),
+						project.getDeadline().getDay());
+				ps.setDate(5, new Date(cal.getTimeInMillis()));
+				c.setAutoCommit(false);
+
+				ps.execute();
+
+				ps = c.prepareStatement("SELECT ID FROM PROJECTS WHERE PROJECTS.NAME=?;");
+				ps.setString(1, project.getName());
+				ResultSet result = ps.executeQuery();
+
+				int projectID = 1;
+				while (result.next()) {
+					projectID = result.getInt("id");
+				}
+
+				for (int i = 0; i < project.getRewards().size(); i++) {
+					ps = c.prepareStatement(consts.inProjectRewards);
+					ps.setString(1, project.getRewards().get(i).getDescr());
+					ps.setInt(2, project.getRewards().get(i).getValue());
+					ps.setInt(3, projectID);
+
+					ps.execute();
+
+				}
+
+				for (int i = 0; i < project.getChoices().getAnswers().size(); i++) {
+					ps = c.prepareStatement(consts.insertNewChoice);
+					ps.setString(1, project.getChoices().getQuestion());
+					ps.setString(2, project.getChoices().getAnswers().get(i));
+					ps.setInt(3, projectID);
+					ps.execute();
+				}
+
+				c.commit();
+
+				temp.setSuccess(true);
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+				temp.setSuccess(false);
+			}
+
+		} else {
+			temp.setSuccess(false);
+		}
+		return temp;
+	}
+    
+    
+    
+    //tumblr function finish
+	
+	
 	
 	public Response getAPPKeys(){
 		Response temp = new Response();

@@ -26,6 +26,7 @@ public class CallbackAction extends ActionSupport implements SessionAware {
 
         Token accessToken = new Token( getOauth_token(), getOauth_verifier());
         System.out.println("access token: " + accessToken);
+        session.put("accessToken", value)
         
         return SUCCESS;
     }

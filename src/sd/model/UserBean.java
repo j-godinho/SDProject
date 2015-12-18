@@ -56,6 +56,7 @@ public class UserBean {
                 .apiSecret(API_APP_SECRET)
                 .callback("http://localhost:8080/SDProjectGit/callback")
                 .build();
+		
 
         Token requestToken = service.getRequestToken();
         return service.getAuthorizationUrl(requestToken);

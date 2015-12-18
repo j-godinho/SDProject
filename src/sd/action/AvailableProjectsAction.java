@@ -34,10 +34,4 @@ public class AvailableProjectsAction extends ActionSupport {
 		this.availableProjects = availableProjects;
 	}
 
-	/*
-	 * @Override public void setSession(Map<String, Object> arg0) { this.session
-	 * = session;
-	 * 
-	 * }
-	 */
 }

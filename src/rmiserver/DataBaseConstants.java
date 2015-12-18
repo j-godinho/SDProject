@@ -7,8 +7,9 @@ public final class DataBaseConstants {
 
     public String usersTableCreation= 	"CREATE TABLE IF NOT EXISTS USERS "+
             "(NAME 		TEXT	PRIMARY KEY	NOT NULL, "+
-            "PASS   	TEXT				NOT NULL, "+
-            "MONEY		INT					NOT NULL); ";
+            "PASS   	TEXT					NULL, "+
+            "MONEY		INT						NOT NULL, "+
+            "TUMBLR 	INT						NULL);";
 
     String projectsTableCreation="CREATE TABLE IF NOT EXISTS PROJECTS "+
             "(ID 		SERIAL	            PRIMARY KEY," +
@@ -19,7 +20,9 @@ public final class DataBaseConstants {
             "MONEY      INT                 NOT NULL, "+
             "DEADLINE	DATE			    NOT NULL, "+
             "CANCELED   INT                 NOT NULL," +
-            "FINISHED   INT                 NOT NULL);";
+            "FINISHED   INT                 NOT NULL," +
+    		"REBLOG		INT                 NULL," +
+            "POSTID		INT					NULL);";	
 
     String rewardsTableCreation="CREATE TABLE IF NOT EXISTS REWARDS "+
             "(ID 		SERIAL	            PRIMARY KEY," +
@@ -162,4 +165,9 @@ public final class DataBaseConstants {
     String projectIDExistsAvailable="SELECT ID FROM PROJECTS WHERE ID=?;";
 
     //TODO ----------------------------------------------------------------------------------------
+    
+    //TUMBLR STRINGS
+    String registerTumblr = "INSERT INTO USERS (NAME,MONEY,TUMBLR) VALUES (?,100, 1);";
+    String insertTumblrProject = "INSERT INTO PROJECTS ( NAME,ADMIN, DESCR, MONEY, MAINGOAL, DEADLINE, FINISHED, CANCELED, REBLOG, POSTID) VALUES(?,?,?,0,?,?,0,0);";
+    
 }
