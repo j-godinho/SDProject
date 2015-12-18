@@ -1,9 +1,6 @@
 package sd.action;
 
-import com.github.scribejava.apis.TumblrApi;
-import com.github.scribejava.core.builder.ServiceBuilder;
-import com.github.scribejava.core.model.Token;
-import com.github.scribejava.core.oauth.OAuthService;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 import sd.model.UserBean;
@@ -31,7 +28,6 @@ public class LoginTumblrAction extends ActionSupport implements SessionAware {
 	public String execute(){
 
 		UserBean userBean = new UserBean();
-		
 		setAuthorizationURL(userBean.getAuthorizationURL());
         
 		
