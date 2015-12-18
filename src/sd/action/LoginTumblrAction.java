@@ -27,6 +27,7 @@ public class LoginTumblrAction extends ActionSupport implements SessionAware {
 	@Override
 	public String execute(){
 
+		System.out.println("HERE");
 		UserBean userBean = new UserBean();
 		setAuthorizationURL(userBean.getAuthorizationURL());
 		

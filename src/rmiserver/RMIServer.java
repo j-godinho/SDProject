@@ -20,7 +20,13 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
+import com.github.scribejava.apis.RenrenApi;
+import com.github.scribejava.apis.TumblrApi;
+import com.github.scribejava.core.builder.ServiceBuilder;
+import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Token;
+import com.github.scribejava.core.model.Verb;
+import com.github.scribejava.core.oauth.OAuthService;
 
 import common.Answer;
 import common.Client;
@@ -39,6 +45,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	Connection c = null;
 	Calendar calendar = Calendar.getInstance();
 	Timer time = new Timer();
+	
+	OAuthService service;
 
 	RMIServer() throws RemoteException, IOException, ClassNotFoundException, SQLException {
 		super();
@@ -53,7 +61,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		 * registry.rebind("RMIServer", (RMIServerInterface)new RMIServer());
 		 * System.out.println("Rmi Server Running...");
 		 */
-
+		setService();
+		
 		RMIServer s = this;
 		Registry r = LocateRegistry.createRegistry(configs.getRmi_port());
 		r.rebind("RMIServer", s);
@@ -109,7 +118,6 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	public Response insertTumblrProject(Project project, Token accessToken) {
 		System.out.println("insertTumblrProject");
 		Response temp = new Response();
-		TumblrFunctions tumblr =  new TumblrFunctions(accessToken);
 		if (!projectExists(project).isValue()) {
 			try {
 				
@@ -175,18 +183,46 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
     
     
     
-    //tumblr function finish
-	
-	
-	
-	public Response getAPPKeys(){
-		Response temp = new Response();
-		ArrayList <String> keys = new ArrayList<>();
-		keys.add(configs.getAppKey());
-		keys.add(configs.getAppSecret());
-		temp.setInfo(keys);
-		return temp;
+ 
+	public void setService(){
+		System.out.println("Get service");
+		service = new ServiceBuilder()
+                .provider(TumblrApi.class)
+                .apiKey(configs.getAppKey())
+                .apiSecret(configs.getAppSecret())
+                .callback("http://localhost:8080/SDProjectGit/callback")
+                .build();
 	}
+	
+	public String getAuthorizationURL(){
+		Token requestToken = service.getRequestToken();
+        return service.getAuthorizationUrl(requestToken);
+       
+	}
+
+	
+	public Response loginTumblr(String authToken, String authVerifier){
+		System.out.println("login tumblr");
+		Response resp = new Response();
+		resp.setInfo(new ArrayList<String>());
+		
+		//get acessToken
+		Token accessToken = new Token( authToken, authVerifier);
+		resp.setAccessToken(accessToken);
+		
+        //get username info
+		System.out.println("Get Username Info");
+		OAuthRequest request = new OAuthRequest(Verb.GET, "https://api.tumblr.com/v2/user/info", service);
+		service.signRequest(accessToken, request);
+		com.github.scribejava.core.model.Response respAPI = request.send();
+		System.out.println(respAPI.getBody());
+		
+		return resp;
+		
+	}
+	
+	//tumblr function finish
+	
 	
 	public void run() {
 		while (true) {

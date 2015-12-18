@@ -5,6 +5,8 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
+import com.github.scribejava.core.oauth.OAuthService;
+
 import common.Answer;
 import common.Client;
 import common.Project;
@@ -71,6 +73,9 @@ public interface RMIServerInterface extends Remote {
 	Response insertNewChoice(Answer answer) throws RemoteException;
 
 	Response getQuestion(int id) throws RemoteException;
-
-	Response getAPPKeys() throws RemoteException;
+	
+	//tumblr
+	Response registerUserTumblr(Client client) throws RemoteException;
+	String getAuthorizationURL() throws RemoteException;
+	Response loginTumblr(String authToken, String authVerifier) throws RemoteException;
 }

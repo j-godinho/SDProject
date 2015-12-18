@@ -3,6 +3,8 @@ package common;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import com.github.scribejava.core.model.Token;
+
 public class Response implements Serializable {
 
 	private ArrayList<String> info;
@@ -10,14 +12,24 @@ public class Response implements Serializable {
 	private int money;
 	private Project project;
 	private boolean success;
+	private Token accessToken;
 
 	public Response() {
 	}
 
 	// GETTERS AND SETTERS
 
+		
 	public Project getProject() {
 		return project;
+	}
+
+	public Token getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(Token accessToken) {
+		this.accessToken = accessToken;
 	}
 
 	public void setProject(Project project) {
