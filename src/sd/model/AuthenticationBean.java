@@ -54,7 +54,7 @@ public class AuthenticationBean {
 				resp = server.checkUser(client);
 				if (resp.isSuccess()) {
 					if (resp.isValue()) {
-						server.updateOnlineUsers(username, 1);
+						server.updateOnlineUsers(1, username);
 						System.out.println("User/password correct");
 						return 0;
 					} else {
@@ -81,7 +81,7 @@ public class AuthenticationBean {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			System.out.println("RMI Connected");
 			try {
-				resp = server.updateOnlineUsers(username, 0);
+				resp = server.updateOnlineUsers(0, username);
 				if (resp.isSuccess()) {
 					return 0;
 
