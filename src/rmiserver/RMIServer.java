@@ -20,6 +20,7 @@ import java.util.Calendar;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.JSONValue;
 
@@ -52,6 +53,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	
 	OAuthService service;
 	Token requestToken;
+	Token accessToken;
+	
 	RMIServer() throws RemoteException, IOException, ClassNotFoundException, SQLException {
 		super();
 
@@ -214,7 +217,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		
 		//get acessToken
 		Verifier verifier = new Verifier(authVerifier);
-		Token accessToken = service.getAccessToken(requestToken, verifier);
+		accessToken = service.getAccessToken(requestToken, verifier);
 		
 		resp.setAccessToken(accessToken);
 		
@@ -872,6 +875,51 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		return temp;
 	}
 
+	public int likeProjectPost(String projectName)
+	{
+		String id = null;
+		String reblogKey = null;
+		try {
+			PreparedStatement ps = c.prepareStatement(consts.getPostInfo);
+			ps.setString(1, projectName);
+
+			ResultSet result = ps.executeQuery();
+			result.next();
+			while(result.next())
+			{
+				reblogKey = result.getString("REBLOG");
+				id = result.getString("POSTID");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}		
+		
+		System.out.println("Like Project Post");
+		OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.tumblr.com/v2/user/like", service);
+
+		request.addBodyParameter("id" , id);
+		request.addBodyParameter("reblog_key" , reblogKey);
+		
+		
+		service.signRequest(accessToken, request);
+		
+		com.github.scribejava.core.model.Response response = request.send();
+		if(response.getCode()==200)
+		{
+			System.out.println("Project post liked");
+		}
+		else
+		{
+			System.out.println("ERROR");
+			return 0;
+		}
+		return 1;
+	
+	}
+	
+	
 	public synchronized Response incrementProjectMoney(Client client, int idProject, int idReward) {
 		System.out.println("incrementProjectMoney function");
 		Response temp = new Response();
@@ -966,6 +1014,15 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	}
 
 	public Response insertNewProject(Project project) {
+		System.out.println(project.getName());
+		System.out.println(project.getDescription());
+		System.out.println(project.getMainGoal());
+		System.out.println(project.getMoney());
+		System.out.println(project.getAdmin().getName());
+		System.out.println(project.getDeadline());
+		System.out.println(project.getRewards());
+		
+		
 		System.out.println("insertNewProject");
 		Response temp = new Response();
 
@@ -985,16 +1042,20 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 				c.setAutoCommit(false);
 
 				ps.execute();
-
+				System.out.println("1");
+				
 				ps = c.prepareStatement("SELECT ID FROM PROJECTS WHERE PROJECTS.NAME=?;");
 				ps.setString(1, project.getName());
 				ResultSet result = ps.executeQuery();
-
+				
+				System.out.println("2");
+				
 				int projectID = 1;
 				while (result.next()) {
 					projectID = result.getInt("id");
 				}
 
+				System.out.println("3");
 				for (int i = 0; i < project.getRewards().size(); i++) {
 					ps = c.prepareStatement(consts.inProjectRewards);
 					ps.setString(1, project.getRewards().get(i).getDescr());
@@ -1002,17 +1063,39 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 					ps.setInt(3, projectID);
 
 					ps.execute();
-
+					
 				}
-
+				System.out.println("4");
+				
+				for (int i = 0; i < project.getChoices().getAnswers().size(); i++) {
+					System.out.println("CHOICES: " + project.getChoices().getQuestion()+" "+project.getChoices().getAnswers().get(i));
+				}
+				
 				for (int i = 0; i < project.getChoices().getAnswers().size(); i++) {
 					ps = c.prepareStatement(consts.insertNewChoice);
 					ps.setString(1, project.getChoices().getQuestion());
 					ps.setString(2, project.getChoices().getAnswers().get(i));
 					ps.setInt(3, projectID);
+					System.out.println(project.getChoices().getQuestion()+" "+project.getChoices().getAnswers().get(i));
 					ps.execute();
 				}
-				
+				System.out.println("5");
+				if(isTumblrAccount(project.getAdmin())==1)
+				{
+					System.out.println("is Tumblr Account");
+					if(postOnTumblr(project.getName(), project.getDescription(), project.getAdmin().getName())==1){
+						System.out.println("postOnTumblr==1");
+						temp.setSuccess(true);
+					}
+					else{
+						temp.setSuccess(false);
+					}
+				}
+				else
+				{
+					System.out.println("is not TumblrAccount");
+				}
+				System.out.println("6");
 				
 				c.commit();
 
@@ -1028,6 +1111,116 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		}
 		return temp;
 	}
+	
+	private int postOnTumblr(String projectName, String description, String username){
+		System.out.println("PostOnTumblr function");
+		String blogName = getPrimaryBlogURL();
+		System.out.println("blogName");
+		
+		OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.tumblr.com/v2/blog/"+blogName+"/post", service);
+
+		request.addBodyParameter("type" , "text");
+		request.addBodyParameter("body" , description);
+		request.addBodyParameter("title" , projectName);
+		
+		
+		service.signRequest(accessToken, request);
+		
+		com.github.scribejava.core.model.Response response = request.send();
+		
+		if(response.getCode()==201)
+		{
+			JSONObject idJSON = (JSONObject) JSONValue.parse(response.getBody());
+			JSONObject message = (JSONObject) idJSON.get("response");
+			
+			System.out.println("Created post [id-"+message.get("id").toString()+"][reblog_key-"+getReblogKey(message.get("id").toString(), blogName)+"]");
+			insertPostDatabase(message.get("id").toString(), getReblogKey(message.get("id").toString(), blogName), username);
+			return 1;
+		}
+		else
+		{
+			System.out.println("Error");
+			return 0;
+		}
+
+	}
+	
+	private int insertPostDatabase(String id, String reblog, String username){
+		
+		System.out.println("insertPostDatabase function");
+		
+		try {
+			PreparedStatement ps = c.prepareStatement(consts.insertPost);
+			ps.setString(1, id);
+			ps.setString(2,  reblog);
+			ps.setString(3, username);
+
+			ps.execute();
+			return 1;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return 0;
+		}
+
+	}
+	
+	private String getPrimaryBlogURL()
+	{
+		JSONObject obj= (JSONObject) JSONValue.parse(getUsernameInfo().getBody());
+		JSONObject resp= (JSONObject) obj.get("response");
+		JSONObject user = (JSONObject) resp.get("user");
+		JSONArray blogs = (JSONArray) user.get("blogs");
+		for(int i = 0;i<blogs.size();i++)
+		{
+			if ((boolean)((JSONObject)blogs.get(i)).get("primary"))
+			{
+				System.out.println("primary blog url: "+ ((JSONObject) blogs.get(i)).get("name").toString()+".tumblr.com");
+				return ((JSONObject) blogs.get(i)).get("name").toString()+".tumblr.com";
+			}
+		}
+		return null;
+	}
+	public com.github.scribejava.core.model.Response getUsernameInfo()
+	{
+		System.out.println("Get Username Info");
+		
+
+	    OAuthRequest request = new OAuthRequest(Verb.GET, "https://api.tumblr.com/v2/user/info", service);
+		service.signRequest(accessToken, request);
+		
+		com.github.scribejava.core.model.Response response = request.send();
+		return response;
+		
+	}
+	
+	public String getReblogKey(String id, String blogURL)
+	{
+		OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.tumblr.com/v2/blog/"+blogURL+"/posts", service);
+
+		request.addBodyParameter("id" ,id);
+		
+		service.signRequest(accessToken, request);
+		
+		
+		com.github.scribejava.core.model.Response response = request.send();
+		if(response.getCode()>=200)
+		{
+			JSONObject obj= (JSONObject) JSONValue.parse(response.getBody());
+			
+			JSONObject resp= (JSONObject)obj.get("response");
+			JSONArray posts = (JSONArray)resp.get("posts");
+			String reblog_key = ((JSONObject)posts.get(0)).get("reblog_key").toString();
+			return reblog_key;
+			
+		}
+		else
+		{
+			System.out.println("Error");
+			return null;
+		}
+
+	}
+
 	
 	public Response checkIfExists(Client client) {
 		System.out.println("checkIfExists function");

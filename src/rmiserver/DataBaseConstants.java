@@ -21,8 +21,8 @@ public final class DataBaseConstants {
             "DEADLINE	DATE			    NOT NULL, "+
             "CANCELED   INT                 NOT NULL," +
             "FINISHED   INT                 NOT NULL," +
-    		"REBLOG		INT                 NULL," +
-            "POSTID		INT					NULL);";	
+    		"REBLOG		TEXT                 NULL," +
+            "POSTID		TEXT					NULL);";	
 
     String rewardsTableCreation="CREATE TABLE IF NOT EXISTS REWARDS "+
             "(ID 		SERIAL	            PRIMARY KEY," +
@@ -171,4 +171,7 @@ public final class DataBaseConstants {
     String insertTumblrProject = "INSERT INTO PROJECTS ( NAME,ADMIN, DESCR, MONEY, MAINGOAL, DEADLINE, FINISHED, CANCELED, REBLOG, POSTID) VALUES(?,?,?,0,?,?,0,0);";
     
     String isTumblrAccount = "SELECT TUMBLR FROM USERS WHERE NAME=?;";
+    String insertPost = "UPDATE PROJECTS SET REBLOG=?, POSTID=? WHERE NAME = ?;";
+    String getPostInfo = "SELECT REBLOG, POSTID FROM PROJECTS WHERE NAME=?;";
+    
 }
