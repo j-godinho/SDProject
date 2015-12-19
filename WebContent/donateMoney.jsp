@@ -26,9 +26,9 @@
 	<!-- TODO  Donate money-->
 	<s:text name="Donate Money" />
 	<s:form action="donate" method="post">
-		<s:textfield name="donateBean.projectID" type="number" />
-		<s:textfield name="donateBean.rewardID" type="number" />
-		<s:textfield name="donateBean.choiceID" type="number" />
+		<s:textfield name="donateBean.projectID" type="number" placeholder="ProjectID"/>
+		<s:textfield name="donateBean.rewardID" type="number" placeholder="RewardID"/>
+		<s:textfield name="donateBean.choiceID" type="number" placeholder="ChoiceID"/>
 		<s:submit value="Donate Money" />
 	</s:form>
 
