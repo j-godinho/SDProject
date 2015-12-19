@@ -183,75 +183,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		return temp;
 	}
 
-	public Response insertTumblrProject(Project project, Token accessToken) {
-		System.out.println("insertTumblrProject");
-		Response temp = new Response();
-		if (!projectExists(project).isValue()) {
-			try {
-				
-				//get repostkey and postid
-				
-				
-				
-				// DATE
-				PreparedStatement ps = c.prepareStatement(consts.insertTumblrProject);
-				ps.setString(1, project.getName());
-				ps.setString(2, project.getAdmin().getName());
-				ps.setString(3, project.getDescription());
-				ps.setInt(4, project.getMainGoal());
-				Calendar cal = Calendar.getInstance();
-				cal.set(project.getDeadline().getYear(), project.getDeadline().getMonth(),
-						project.getDeadline().getDay());
-				ps.setDate(5, new Date(cal.getTimeInMillis()));
-				c.setAutoCommit(false);
-
-				ps.execute();
-
-				ps = c.prepareStatement("SELECT ID FROM PROJECTS WHERE PROJECTS.NAME=?;");
-				ps.setString(1, project.getName());
-				ResultSet result = ps.executeQuery();
-
-				int projectID = 1;
-				while (result.next()) {
-					projectID = result.getInt("id");
-				}
-
-				for (int i = 0; i < project.getRewards().size(); i++) {
-					ps = c.prepareStatement(consts.inProjectRewards);
-					ps.setString(1, project.getRewards().get(i).getDescr());
-					ps.setInt(2, project.getRewards().get(i).getValue());
-					ps.setInt(3, projectID);
-
-					ps.execute();
-
-				}
-
-				for (int i = 0; i < project.getChoices().getAnswers().size(); i++) {
-					ps = c.prepareStatement(consts.insertNewChoice);
-					ps.setString(1, project.getChoices().getQuestion());
-					ps.setString(2, project.getChoices().getAnswers().get(i));
-					ps.setInt(3, projectID);
-					ps.execute();
-				}
-
-				c.commit();
-
-				temp.setSuccess(true);
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-				temp.setSuccess(false);
-			}
-
-		} else {
-			temp.setSuccess(false);
-		}
-		return temp;
-	}
-    
-    
-    
- 
+     
 	public void setService(){
 		System.out.println("Get service");
 		service = new ServiceBuilder()

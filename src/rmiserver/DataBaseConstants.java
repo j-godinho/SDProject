@@ -174,4 +174,10 @@ public final class DataBaseConstants {
     String insertPost = "UPDATE PROJECTS SET POSTID = ? , REBLOG = ? WHERE ADMIN = ?;";
     String getPostInfo = "SELECT REBLOG, POSTID FROM PROJECTS WHERE ID=?;";
     
+    //hugo
+	String getAdmin = "SELECT ADMIN FROM PROJECTS WHERE ID=?;";
+    String getValue = "SELECT VALUE FROM REWARDS WHERE ID=?;";
+    String getProjectName = "SELECT NAME FROM PROJECTS WHERE ID=?;";
+	
+    
 }
