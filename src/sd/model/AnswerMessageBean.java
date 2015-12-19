@@ -20,15 +20,13 @@ public class AnswerMessageBean {
 
 	public int listMessages(String username) throws RemoteException {
 		System.out.println("list messages function");
-		String to;
 		Response resp = new Response();
-		Response resp2 = new Response();
+		
 		try {
+			System.out.println("text: " + text + " answerID: "+ answerID);
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			try {
 				resp = server.showMessages(new Client(username, null));
-				resp2 = server.getSenderName(Integer.parseInt(answerID));
-				wsAnnotation.newMessage(username, resp2.getInfo().get(0));
 				if (resp.isSuccess()) {
 					if(!resp.getInfo().isEmpty()){
 						messages = pretty(resp.getInfo());
@@ -75,11 +73,16 @@ public class AnswerMessageBean {
 	public int answer(String username) throws RemoteException {
 
 		Response resp = new Response();
+		Response resp2 = new Response();
 		//	public synchronized Response showMessages(Client client) {
 		try {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
+			
 			try {
 				resp = server.answerQuestion(new Client(username, null), Integer.parseInt(answerID), text);
+				resp2 = server.getSenderName(Integer.parseInt(answerID));
+				System.out.println("HI");
+				wsAnnotation.newMessage(username, resp2.getInfo().get(0));
 				if (resp.isSuccess()) {
 					return 1;
 				}
@@ -106,8 +109,6 @@ public class AnswerMessageBean {
 		this.text = text;
 	}
 
-
-
 	public String getAnswerID() {
 		return answerID;
 	}
@@ -123,6 +124,23 @@ public class AnswerMessageBean {
 	public void setMessages(ArrayList<String> messages) {
 		this.messages = messages;
 	}
+
+	public RMIServerInterface getServer() {
+		return server;
+	}
+
+	public void setServer(RMIServerInterface server) {
+		this.server = server;
+	}
+
+	public WebSocketAnnotation getWsAnnotation() {
+		return wsAnnotation;
+	}
+
+	public void setWsAnnotation(WebSocketAnnotation wsAnnotation) {
+		this.wsAnnotation = wsAnnotation;
+	}
+
 
 	
 	

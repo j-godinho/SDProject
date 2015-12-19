@@ -50,7 +50,7 @@ public class AuthFilter implements Filter {
 		
 		if ((session == null || session.getAttribute("username") == null) && !(uri.endsWith("SDProjectGit/")
 				|| uri.endsWith("index.jsp") || uri.endsWith("error.jsp") || uri.endsWith("login.jsp") || uri.endsWith("register.jsp")
-				|| uri.endsWith("projDetails.jsp") || uri.endsWith("/ws") || uri.endsWith("/style.css"))) {
+				|| uri.endsWith("projDetails.jsp") || uri.endsWith("olderProjects.jsp") || uri.endsWith("availableProjects.jsp") || uri.endsWith("/ws") || uri.endsWith("/styles.css"))) {
 
 			if (session == null) {
 				session = req.getSession();

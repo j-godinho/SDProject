@@ -42,13 +42,11 @@
 			<result>/index.jsp</result>
 		</action>
 
-		<action name="availableProjects" class="sd.action.AvailableProjectsAction"
-			method="execute">
+		<action name="availableProjects" class="sd.action.AvailableProjectsAction" method="execute">
 			<result name="success">/availableProjects.jsp</result>
 		</action>
 
-		<action name="olderProjects" class="sd.action.OlderProjectsAction"
-			method="execute">
+		<action name="olderProjects" class="sd.action.OlderProjectsAction" method="execute">
 			<result name="success">/olderProjects.jsp</result>
 		</action>
 
@@ -62,13 +60,16 @@
 
 
 		<action name="sendMessage" class="">
+		<interceptor-ref name="interceptor" />
 			<result>/sendMessage.jsp</result>
 		</action>
 		
 		 <action name="createProject" class="">
+		 <interceptor-ref name="interceptor" />
     		<result>/createProject.jsp</result>
     	</action>
     	<action name="rewardsUpdate" class="">
+    	<interceptor-ref name="interceptor" />
     		<result>/updateRewards.jsp</result>
     	</action>
 
@@ -86,6 +87,7 @@
 		</action>
 
 		<action name="logout" class="sd.action.Authentication" method="logout">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/index.jsp</result>
 		</action>
 
@@ -97,33 +99,39 @@
 		
 		
 		<action name="createProjectSend" class="sd.action.CreateProjectAction" method="execute">
+		<interceptor-ref name="interceptor" />
     		<result name="success">/index.jsp</result>
     	</action>
 
 		<action name="addReward" class="sd.action.UpdateRewardsAction" method = "addReward">
+		<interceptor-ref name="interceptor" />
     		<result name = "success">/index.jsp</result>
     	</action>
     	
     	<action name="removeReward" class="sd.action.UpdateRewardsAction" method = "removeReward">
+    	<interceptor-ref name="interceptor" />
     		<result name = "success">/index.jsp</result>
     	</action>
     	
 		
-		<action name="consultAccount" class="sd.action.AccountMoneyAction"
-			method="execute">
+		<action name="consultAccount" class="sd.action.AccountMoneyAction" method="execute">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/index.jsp</result>
 		</action>
 		
 
 		<action name="cancelProject" class="sd.action.CancelProjectAction" method="execute">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/index.jsp</result>
 		</action>
 		
-		<action name="answerMessage" class="sd.action.AnswerMessageAction" method="list">
+		<action name="answerMessage" class="sd.action.AnswerMessageAction" method="execute">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/answerMessages.jsp</result>
 		</action>
 		
 		<action name="answerMessageAction" class="sd.action.AnswerMessageAction" method="answer">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/index.jsp</result>
 		</action>
 		
@@ -136,6 +144,7 @@
 		</action>
 		
 		<action name="sendMessageList" class="sd.action.SendMessageAction" method="list">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/listProjectsMessage.jsp</result>
 		</action>
 		
@@ -145,18 +154,23 @@
 		</action>
 		
 		<action name="listcancelProject" class="sd.action.CancelProjectAction" method="execute">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/listProjCancel.jsp</result>
 		</action>
+		
 		<action name="cancelProject" class="sd.action.CancelProjectAction" method="cancel">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/index.jsp</result>
 		</action>
 		
 		
 		<action name="donateMoney" class="sd.action.DonateAction" method="execute">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/donateMoney.jsp</result>
 		</action>
 		
 		<action name="donate" class="sd.action.DonateAction" method="donate">
+		<interceptor-ref name="interceptor" />
 			<result name="success">/index.jsp</result>
 		</action>
 		

@@ -20,9 +20,8 @@ public class AnswerMessageAction extends ActionSupport implements SessionAware{
 	private Map<String, Object> session;
 	private AnswerMessageBean answerMessageBean;
 
-	
-	public String list() throws RemoteException {
-		System.out.println("execute listAction");
+	@Override
+	public String execute() throws Exception{
 		setAnswerMessageBean(new AnswerMessageBean());
 		if(getAnswerMessageBean().listMessages((String)session.get("username"))==1)
 		{

@@ -129,6 +129,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	//hugo
 	
 	public Response getSenderName(int messageID) {
+		System.out.println("getSenderName");
 		Response temp = new Response();
 		try {
 			PreparedStatement ps = c.prepareStatement(consts.getSender);
