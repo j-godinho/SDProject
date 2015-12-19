@@ -185,8 +185,7 @@
 			<input type="submit" value="Chat">
 		</s:form>
 		
-		<s:form action="cancelProject" method="get">
-			<s:textfield name="cancelProjectBean.choice" />
+		<s:form action="listcancelProject" method="get">
 			<input type="submit" value ="Cancel Project"/>
 		</s:form>
 		

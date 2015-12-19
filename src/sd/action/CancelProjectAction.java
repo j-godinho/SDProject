@@ -4,6 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import sd.model.CancelProjectBean;
 import sd.model.RewardsBean;
+import sd.model.SendMessageBean;
 
 import java.util.Map;
 
@@ -23,6 +24,12 @@ public class CancelProjectAction extends ActionSupport implements SessionAware {
 		}
 		return SUCCESS;
 		
+	}
+	public String list() throws Exception {
+		System.out.println("listProjectDetails");
+		setCancelProjectBean(new CancelProjectBean());
+		getCancelProjectBean().getProjects();
+		return SUCCESS;
 	}
 
 	public CancelProjectBean getCancelProjectBean() {
