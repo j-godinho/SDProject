@@ -24,7 +24,8 @@ public class DonateAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() throws Exception {
-
+		System.out.println("donate action execute");
+		donateBean = new DonateBean();
 		if (getDonateBean().donate((String) session.get("username")) == 0) {
 			return SUCCESS;
 		} else {

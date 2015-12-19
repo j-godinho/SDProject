@@ -926,6 +926,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		
 		ResultSet result = null;
 		PreparedStatement ps = null;
+		
 		try {
 			if (projectIDExistsAvailable(idProject)) {
 				// getValue
@@ -1020,16 +1021,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 
 	}
 
-	public Response insertNewProject(Project project) {
-		System.out.println(project.getName());
-		System.out.println(project.getDescription());
-		System.out.println(project.getMainGoal());
-		System.out.println(project.getMoney());
-		System.out.println(project.getAdmin().getName());
-		System.out.println(project.getDeadline());
-		System.out.println(project.getRewards());
-		
-		
+	public Response insertNewProject(Project project) {		
 		System.out.println("insertNewProject");
 		Response temp = new Response();
 
@@ -1083,7 +1075,6 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 					ps.setString(1, project.getChoices().getQuestion());
 					ps.setString(2, project.getChoices().getAnswers().get(i));
 					ps.setInt(3, projectID);
-					System.out.println(project.getChoices().getQuestion()+" "+project.getChoices().getAnswers().get(i));
 					ps.execute();
 				}
 				System.out.println("5");
