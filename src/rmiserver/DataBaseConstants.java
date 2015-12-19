@@ -171,7 +171,7 @@ public final class DataBaseConstants {
     String insertTumblrProject = "INSERT INTO PROJECTS ( NAME,ADMIN, DESCR, MONEY, MAINGOAL, DEADLINE, FINISHED, CANCELED, REBLOG, POSTID) VALUES(?,?,?,0,?,?,0,0);";
     
     String isTumblrAccount = "SELECT TUMBLR FROM USERS WHERE NAME=?;";
-    String insertPost = "UPDATE PROJECTS SET POSTID = ? , REBLOG = ? WHERE ADMIN = ?;";
+    String insertPost = "UPDATE PROJECTS SET POSTID = ? , REBLOG = ? WHERE NAME = ?;";
     String getPostInfo = "SELECT REBLOG, POSTID FROM PROJECTS WHERE ID=?;";
     
     //hugo

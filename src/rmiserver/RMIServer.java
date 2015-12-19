@@ -876,12 +876,12 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 			ps.setInt(1, pid);
 
 			ResultSet result = ps.executeQuery();
-			result.next();
 			while(result.next())
 			{
 				reblogKey = result.getString("REBLOG");
 				id = result.getString("POSTID");
 			}
+			System.out.println("ReblogKey: " + reblogKey + "| postID: "+ id);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -1105,7 +1105,6 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	private int postOnTumblr(String projectName, String description, String username){
 		System.out.println("PostOnTumblr function");
 		String blogName = getPrimaryBlogURL();
-		System.out.println("blogName");
 		
 		OAuthRequest request = new OAuthRequest(Verb.POST, "https://api.tumblr.com/v2/blog/"+blogName+"/post", service);
 
@@ -1144,6 +1143,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 			ps.setString(1, id);
 			ps.setString(2,  reblog);
 			ps.setString(3, projectName);
+			
 
 			ps.execute();
 			return 1;
