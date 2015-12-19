@@ -4,7 +4,6 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import sd.model.AvailableProjects;
 
-import org.apache.struts2.interceptor.SessionAware;
 import java.util.Map;
 
 public class AvailableProjectsAction extends ActionSupport {
