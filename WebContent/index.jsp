@@ -143,7 +143,7 @@
 	</s:form>
 
 	<c:if test="${session.username!= null}">
-	
+		
 		
 		<s:form action="availableProjects" method="get">
 			<input type="submit" value="Show Available Projects">
@@ -195,12 +195,12 @@
 			<input type="submit" value="logout">
 		</s:form>
 		
-		 
-	<div id="container">
+		 <div id="container">
 		<div id="notifications"></div>
 	</div>
 	
 	<div id="projectMoney"></div>
+	
 	</c:if>
 
 	<c:if test="${session.username == null}">

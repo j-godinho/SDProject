@@ -25,20 +25,23 @@ public class WebSocketAnnotation {
     private Map<String, Object> sessionM;
     private static final Set<WebSocketAnnotation> connections = new CopyOnWriteArraySet < >();
     
-    /*public WebSocketAnnotation() {
+    public WebSocketAnnotation() {
     	//this.username = (String) sessionM.get("username");
     	this.username = "hugo";
-    }*/
+    }
 
     @OnOpen
     public void start(Session session, EndpointConfig config) {
-        this.session = session;
+        /*this.session = session;
         this.sessionHTTP = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
         connections.add(this);
         if (this.sessionHTTP!=null)
             System.out.println("here");
-            //this.username = ((AuthenticationBean)this.sessionHTTP.getAttribute("authenticationBean")).getUsername();
-           
+            this.username = ((AuthenticationBean)this.sessionHTTP.getAttribute("authenticationBean")).getUsername();
+         */ 
+    	this.session = session;
+        connections.add(this);
+        
             
             
 
