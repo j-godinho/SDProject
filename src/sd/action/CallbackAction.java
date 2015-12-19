@@ -44,7 +44,10 @@ public class CallbackAction extends ActionSupport implements SessionAware {
         if(session.get("accessToken")!=null){
         	session.replace("accessToken", resp.getAccessToken());
         }
-        session.put("username", resp.getInfo().get(0));
+        if(session.get("username")!=null)
+        {
+        	session.replace("username", resp.getInfo().get(0));
+        }
         
         return SUCCESS;
     }
