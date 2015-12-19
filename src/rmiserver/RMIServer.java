@@ -969,15 +969,14 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 
 				ps.execute();
 				
+				c.commit();
+
 				if(likeProjectPost(idProject)==0)
 				{
 					temp.setSuccess(false);
 					return temp;
 				}
 				
-				
-				c.commit();
-
 				ps.close();
 
 				temp.setSuccess(true);
