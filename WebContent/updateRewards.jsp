@@ -26,16 +26,16 @@
 	<!-- TODO  -->
 	<s:text name="Add Reward" />
 	<s:form action="addReward" method="post">
-		<s:textfield name="updateRewardsBean.choice"/>
-		<s:textfield name="updateRewardsBean.rewardType"/>
-		<s:textfield name="updateRewardsBean.rewardValue"/>
+		<s:textfield name="updateRewardsBean.choice" placeholder="ProjectID"/>
+		<s:textfield name="updateRewardsBean.rewardType" placeholder="RewardID"/>
+		<s:textfield name="updateRewardsBean.rewardValue" placeholder="RewardValue"/>
 		<s:submit value="Add Reward" />
 	</s:form>
 
 	<s:text name="Remove Reward" />
 	<s:form action="removeReward" method="post">
-		<s:textfield name="updateRewardsBean.choice"/>
-		<s:textfield name="updateRewardsBean.rewardID"/>
+		<s:textfield name="updateRewardsBean.choice" placeholder="ProjectID"/>
+		<s:textfield name="updateRewardsBean.rewardID" placeholder="RewardID"/>
 		<s:submit value="Remove Reward" />
 	</s:form>
 
