@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import common.Client;
 import common.Response;
 import rmiserver.RMIServerInterface;
+import websocket.WebSocketAnnotation;
 
 public class AnswerMessageBean {
 
@@ -15,14 +16,19 @@ public class AnswerMessageBean {
 	private String answerID;
 	private ArrayList <String> messages;
 	private RMIServerInterface server;
+	private WebSocketAnnotation wsAnnotation = new WebSocketAnnotation();
 
 	public int listMessages(String username) throws RemoteException {
 		System.out.println("list messages function");
+		String to;
 		Response resp = new Response();
+		Response resp2 = new Response();
 		try {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			try {
 				resp = server.showMessages(new Client(username, null));
+				resp2 = server.getSenderName(Integer.parseInt(answerID));
+				wsAnnotation.newMessage(username, resp2.getInfo().get(0));
 				if (resp.isSuccess()) {
 					if(!resp.getInfo().isEmpty()){
 						messages = pretty(resp.getInfo());

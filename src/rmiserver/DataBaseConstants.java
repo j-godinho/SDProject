@@ -183,6 +183,9 @@ public final class DataBaseConstants {
 	String getAdmin = "SELECT ADMIN FROM PROJECTS WHERE ID=?;";
     String getValue = "SELECT VALUE FROM REWARDS WHERE ID=?;";
     String getProjectName = "SELECT NAME FROM PROJECTS WHERE ID=?;";
+    String getSender= "SELECT SENDER FROM MESSAGES WHERE ID=?;";
+    
+	
     
     //online users
     String addOnlineUser = "INSERT INTO ONLINEUSERS (NAME) VALUES (?);";

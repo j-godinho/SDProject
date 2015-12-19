@@ -81,7 +81,7 @@ public interface RMIServerInterface extends Remote {
 	Response getAdministrator(int projectID) throws RemoteException;
 	Response getDonation(int rewardID) throws RemoteException;
 	Response getProjectName(int projectID) throws RemoteException;
-	
+	Response getSenderName(int messageID) throws RemoteException;
 	Response updateOnlineUsers(int choice, String username) throws RemoteException;
 	
 }

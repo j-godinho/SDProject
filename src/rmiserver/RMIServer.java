@@ -127,6 +127,26 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	}
 	
 	//hugo
+	
+	public Response getSenderName(int messageID) {
+		Response temp = new Response();
+		try {
+			PreparedStatement ps = c.prepareStatement(consts.getSender);
+			ps.setInt(1, messageID);
+			
+			ResultSet result= ps.executeQuery();
+			temp.setInfo(toArrayList(result));
+			
+			temp.setSuccess(true);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			temp.setSuccess(false);
+		}
+		
+		return temp;
+	}
+	
 	public Response getAdministrator(int projectID) {
 		Response temp = new Response();
 		try {
@@ -1352,5 +1372,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		// TODO Auto-generated method stub
 
 	}
+
+	
 
 }

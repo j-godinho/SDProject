@@ -3,10 +3,14 @@ import sd.model.*;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set ;
 import java.util.concurrent.CopyOnWriteArraySet ;
 import javax.websocket.server.ServerEndpoint;
+
+
 import javax.websocket.OnOpen;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
@@ -19,15 +23,17 @@ import javax.websocket.*;
 @ServerEndpoint(value = "/ws" , configurator = GetHttpSessionConfigurator.class)
 public class WebSocketAnnotation {
     private static final AtomicInteger sequence = new AtomicInteger(1);
-    private String username;
+    private String username = null;
     private Session session;
-    private HttpSession sessionHTTP;
+    private HttpSession sessionHTTP, httpSession;
     private Map<String, Object> sessionM;
+    private static final Map<String, WebSocketAnnotation> connecT = Collections.synchronizedMap(new HashMap<String, WebSocketAnnotation>());
     private static final Set<WebSocketAnnotation> connections = new CopyOnWriteArraySet < >();
+    private AuthenticationBean authenticationBean;
     
     public WebSocketAnnotation() {
     	//this.username = (String) sessionM.get("username");
-    	this.username = "joao";
+    	//this.username = "joao";
     }
 
     @OnOpen
@@ -39,12 +45,25 @@ public class WebSocketAnnotation {
             System.out.println("here");
             this.username = ((AuthenticationBean)this.sessionHTTP.getAttribute("authenticationBean")).getUsername();
          */ 
+    	//this.session = session;
+        //connections.add(this);
     	this.session = session;
-        connections.add(this);
-        
+		this.httpSession = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
+		this.username = (String) httpSession.getAttribute("username");
+		this.authenticationBean = ((AuthenticationBean) httpSession.getAttribute("authenticationBean"));
             
             
-
+		System.out.println("[WS - " + this.username + "] Registration: " + username);
+		if(connecT.containsKey(username)){
+			connecT.replace(username, this);
+			System.out.println("[WS - " + this.username + "] Registration: " + username + " - UPDATED");
+		}
+		else{
+			connecT.put(username, this);
+		}
+		System.out.println("[WS - " + this.username + "] Registration: " + username + " - DONE");
+		
+		System.out.println("[WS - " + this.username + "] new user");
         String message = "*" + username + "* connected.";
         
         System.out.println(message);
@@ -73,8 +92,8 @@ public class WebSocketAnnotation {
     	t.printStackTrace();
     }
 
-    private void sendMessage(String text, int option, String usernameToSend) {
-    	for(WebSocketAnnotation client: connections){
+    private void sendMessage(String text, int option, String username) {
+    	/*for(WebSocketAnnotation client: connections){
     		
     		try {
     			synchronized(client){
@@ -104,8 +123,36 @@ public class WebSocketAnnotation {
     			String message = String.format ("* %s %s" , client.username , " has   been   disconnected ." );
     			System.out.println(message);
     		}
-    	}
-    	
+    	}*/
+    	System.out.println("[WS] @ sendMessage - destinatario: " + username);
+		WebSocketAnnotation ws = connecT.get(username);
+		
+		if(ws != null){
+			if(ws.session.isOpen()){
+				System.out.println("[WS] WS open");
+			
+			
+				try {
+					System.out.println("[WS] Send Message # " + username + " : " + text);
+					ws.session.getBasicRemote().sendText(text);
+					System.out.println("[WS] Send Message # " + username + " : " + text + " - DONE");
+				} catch (IOException e) {
+					System.out.println("[WS] !!! IO : impossivel enviar mensagem.");
+					
+					
+					try {
+						System.out.println("[WS] Close WebSocket # " + username);
+						ws.session.close();
+						System.out.println("[WS] Close WebSocket # " + username + " - DONE");
+					} catch (IOException e1) {
+						System.out.println("[WS] !!! IO : impossivel fechar WebSocket.");
+						
+						
+					}
+					
+				}
+			}
+		}
     }
     
     public void updateProjectMoney(int received, int money, String administrator)
