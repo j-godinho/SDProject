@@ -43,7 +43,6 @@ import common.Response;
 public class RMIServer extends UnicastRemoteObject implements RMIServerInterface, Runnable {
 	private int number;
 	public ClientInterface clientIF;
-	private Properties properties = new Properties();
 	private DataBaseConstants consts;
 	public Configs configs = new Configs();
 

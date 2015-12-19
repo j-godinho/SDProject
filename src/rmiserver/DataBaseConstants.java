@@ -53,6 +53,10 @@ public final class DataBaseConstants {
             "PROJECTID	INT					REFERENCES PROJECTS(ID) ON DELETE CASCADE, " +
             "RECEIVED   INT                 NOT NULL); ";
 
+    String onlineUsersTableCreation="CREATE TABLE IF NOT EXISTS ONLINEUSERS "+
+    		 "(NAME 	TEXT				PRIMARY KEY	NOT NULL);";
+
+    
     //CHOICES FUNCTONS
     String insertNewChoice = "INSERT INTO CHOICES (QUESTION, CHOICE, COUNT, PROJECTID) VALUES (?,?,0,?);";
     String incrementCount = "UPDATE CHOICES SET COUNT=COUNT+1 WHERE ID=?;";
@@ -178,6 +182,11 @@ public final class DataBaseConstants {
 	String getAdmin = "SELECT ADMIN FROM PROJECTS WHERE ID=?;";
     String getValue = "SELECT VALUE FROM REWARDS WHERE ID=?;";
     String getProjectName = "SELECT NAME FROM PROJECTS WHERE ID=?;";
+    
+    //online users
+    String addOnlineUser = "INSERT INTO ONLINEUSERS (NAME) VALUES (?);";
+    String removeOnlineUser= "DELETE FROM ONLINEUSERS WHERE NAME=?;";
+    
 	
     
 }
