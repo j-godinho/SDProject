@@ -172,6 +172,6 @@ public final class DataBaseConstants {
     
     String isTumblrAccount = "SELECT TUMBLR FROM USERS WHERE NAME=?;";
     String insertPost = "UPDATE PROJECTS SET REBLOG=?, POSTID=? WHERE NAME = ?;";
-    String getPostInfo = "SELECT REBLOG, POSTID FROM PROJECTS WHERE NAME=?;";
+    String getPostInfo = "SELECT REBLOG, POSTID FROM PROJECTS WHERE ID=?;";
     
 }

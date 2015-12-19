@@ -875,13 +875,13 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		return temp;
 	}
 
-	public int likeProjectPost(String projectName)
+	public int likeProjectPost(int pid)
 	{
 		String id = null;
 		String reblogKey = null;
 		try {
 			PreparedStatement ps = c.prepareStatement(consts.getPostInfo);
-			ps.setString(1, projectName);
+			ps.setInt(1, pid);
 
 			ResultSet result = ps.executeQuery();
 			result.next();
@@ -968,6 +968,14 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 				ps.setInt(4, idProject);
 
 				ps.execute();
+				
+				if(likeProjectPost(idProject)==0)
+				{
+					temp.setSuccess(false);
+					return temp;
+				}
+				
+				
 				c.commit();
 
 				ps.close();
