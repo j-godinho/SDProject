@@ -87,6 +87,7 @@ public class WebSocketAnnotation {
     				{
     					if(client.username.equals(usernameToSend))
     					{
+    						
     						client.session.getBasicRemote().sendText(text);
     					}
     				}

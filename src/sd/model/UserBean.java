@@ -8,7 +8,7 @@ import common.Response;
 import rmiserver.RMIServerInterface;
 
 public class UserBean {
-	
+	private RMIServerInterface server;
 	public UserBean(){
 	}
 	
@@ -68,6 +68,51 @@ public class UserBean {
 			e.printStackTrace(); 
 			return null;
 		}
+	}
+	
+	public int logout(String username){
+		Response resp = new Response();
+		try {
+			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
+			System.out.println("RMI Connected");
+			try {
+				resp = server.updateOnlineUsers(0, username);
+				if (resp.isSuccess()) {
+					return 0;
+
+				}
+				return -1;
+
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (NotBoundException | RemoteException e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
+	public int login(String username){
+		Response resp = new Response();
+		try {
+			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
+			System.out.println("RMI Connected");
+			try {
+				resp = server.updateOnlineUsers(1, username);
+				if (resp.isSuccess()) {
+					return 0;
+
+				}
+				return -1;
+
+			} catch (RemoteException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (NotBoundException | RemoteException e) {
+			e.printStackTrace();
+		}
+		return -1;
 	}
 
 	
