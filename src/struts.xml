@@ -171,12 +171,6 @@
         </action>
 
 
-		<!-- 'primes' action calls 'execute' in 'PrimesAction', followed by the 
-			view in 'primes.jsp' -->
-		<action name="primes" class="sd.action.PrimesAction" method="execute">
-			<result name="success">/primes.jsp</result>
-		</action>
-
 	</package>
 
 
