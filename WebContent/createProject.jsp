@@ -26,15 +26,10 @@
 	  Question: <s:textfield name ="createProjectBean.question"/><br>
 	  Choice1 : <s:textfield name ="createProjectBean.answers1"/><br>
 	  Choice2 : <s:textfield name ="createProjectBean.answers2"/><br>
-	  
-	  
-	  
 	 
 	  <s:submit value="Create Project"/>
 	</form>
-
-<button id="reward" onclick="createReward()">New reward</button>
-<button id="choice" onclick="createChoice()">New Choice</button>	
+	
 	
 </body>
 </html>
