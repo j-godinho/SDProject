@@ -235,13 +235,33 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		
 		Client client = new Client(username, null);
 		
-		System.out.println("nao existe");
 		registerUserTumblr(client);
 		
 		return resp;
 	}
 	
-
+	public int isTumblrAccount(Client user)
+	{
+		try {
+			PreparedStatement ps = c.prepareStatement(consts.isTumblrAccount);
+			ps.setString(1, user.getName());
+		
+			ResultSet result = ps.executeQuery();
+			
+			while(result.next()){
+				if(result.getString("tumblr")!=null){
+					return 1;
+				}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return 0;
+	}
+	
 	//tumblr function finish
 	
 	
@@ -921,6 +941,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 
 	public synchronized Response getMoneyAvailable(Client client) {
 		System.out.println("getMoneyAvailable");
+		System.out.println("Username: " + isTumblrAccount(client));
 		Response temp = new Response();
 		try {
 			PreparedStatement ps = c.prepareStatement(consts.getUserMoney);
@@ -991,7 +1012,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 					ps.setInt(3, projectID);
 					ps.execute();
 				}
-
+				
+				
 				c.commit();
 
 				temp.setSuccess(true);
@@ -1006,7 +1028,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		}
 		return temp;
 	}
-
+	
 	public Response checkIfExists(Client client) {
 		System.out.println("checkIfExists function");
 		Response temp = new Response();

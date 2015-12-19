@@ -170,4 +170,5 @@ public final class DataBaseConstants {
     String registerTumblr = "INSERT INTO USERS (NAME,MONEY,TUMBLR) VALUES (?,100, 1);";
     String insertTumblrProject = "INSERT INTO PROJECTS ( NAME,ADMIN, DESCR, MONEY, MAINGOAL, DEADLINE, FINISHED, CANCELED, REBLOG, POSTID) VALUES(?,?,?,0,?,?,0,0);";
     
+    String isTumblrAccount = "SELECT TUMBLR FROM USERS WHERE NAME=?;";
 }
