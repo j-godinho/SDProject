@@ -114,6 +114,7 @@ public class WebSocketAnnotation {
     
     public void newDonation(String donator, String administrator, int donation, String projectName)
     {
+    	System.out.println("donator: "+donator+" administrator: "+administrator+" donation: "+donation+" projName: " +projectName);
     	String text = ("[0]"+donator + " sent " + donation+"€ to your project: "+ projectName);
     	sendMessage(text, 2, administrator);
     }

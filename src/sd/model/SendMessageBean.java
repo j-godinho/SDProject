@@ -20,8 +20,9 @@ public class SendMessageBean {
 	public int send(String username) throws RemoteException {
 		System.out.println("send SENDMESSAGEBEAN");
 		Response resp = new Response();
+		Response resp2 = new Response();
 		from = username;
-		to = "hugo";
+		//to = "hugo";
 
 		try {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
@@ -29,7 +30,8 @@ public class SendMessageBean {
 			try {
 				resp = server.sendMessageToProject(new Client(username, null), Integer.parseInt(projectID), message);
 				//from = username;
-				//to = server.getAdministrator(projectID);
+				resp2 = server.getAdministrator(Integer.parseInt(projectID));
+				to = resp2.getInfo().get(0);
 				System.out.println(from);
 				System.out.println(to);
 				wsAnnotation.newMessage(from, to);
