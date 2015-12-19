@@ -48,16 +48,13 @@ public class DonateBean {
 
 	}
 
-
 	public String getRewardID() {
 		return rewardID;
 	}
 
-
 	public void setRewardID(String rewardID) {
 		this.rewardID = rewardID;
 	}
-
 
 	public String getProjectID() {
 		return projectID;
@@ -67,12 +64,7 @@ public class DonateBean {
 		this.projectID = projectID;
 	}
 
-	public RMIServerInterface getServer() {
-		return server;
-	}
 
-	public void setServer(RMIServerInterface server) {
-		this.server = server;
-	}
+
 
 }

@@ -159,11 +159,11 @@
 		</action>
 		
 		
-		<action name="donateMoney" class="">
-			<result>/donateMoney.jsp</result>
+		<action name="donateMoney" class="sd.action.DonateAction" method="execute">
+			<result name="success">/donateMoney.jsp</result>
 		</action>
 		
-		<action name="donate" class="sd.action.DonateAction" method="execute">
+		<action name="donate" class="sd.action.DonateAction" method="donate">
 			<result name="success">/index.jsp</result>
 		</action>
 		

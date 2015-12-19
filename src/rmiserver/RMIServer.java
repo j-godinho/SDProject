@@ -1132,7 +1132,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 			JSONObject message = (JSONObject) idJSON.get("response");
 			
 			System.out.println("Created post [id-"+message.get("id").toString()+"][reblog_key-"+getReblogKey(message.get("id").toString(), blogName)+"]");
-			insertPostDatabase(message.get("id").toString(), getReblogKey(message.get("id").toString(), blogName), username);
+			insertPostDatabase(message.get("id").toString(), getReblogKey(message.get("id").toString(), blogName), projectName);
 			return 1;
 		}
 		else
@@ -1143,7 +1143,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 
 	}
 	
-	private int insertPostDatabase(String id, String reblog, String username){
+	private int insertPostDatabase(String id, String reblog, String projectName){
 		
 		System.out.println("insertPostDatabase function");
 		
@@ -1151,7 +1151,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 			PreparedStatement ps = c.prepareStatement(consts.insertPost);
 			ps.setString(1, id);
 			ps.setString(2,  reblog);
-			ps.setString(3, username);
+			ps.setString(3, projectName);
 
 			ps.execute();
 			return 1;
