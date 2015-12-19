@@ -75,7 +75,7 @@ public class WebSocketAnnotation {
 
     private void sendMessage(String text, int option, String usernameToSend) {
     	for(WebSocketAnnotation client: connections){
-    		System.out.println("client: " +client.username);
+    		
     		try {
     			synchronized(client){
     				if(option==1)
