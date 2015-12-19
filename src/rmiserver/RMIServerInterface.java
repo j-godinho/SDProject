@@ -49,7 +49,7 @@ public interface RMIServerInterface extends Remote {
 
 	Response removeReward(int pid, int rid) throws RemoteException;
 
-	Response incrementProjectMoney(Client client, int idProject, int idReward) throws RemoteException;
+	Response incrementProjectMoney(Client client, int idProject, int idReward, int idChoice) throws RemoteException;
 
 	Response getMoneyAvailable(Client client) throws RemoteException;
 

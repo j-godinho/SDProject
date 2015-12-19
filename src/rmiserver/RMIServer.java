@@ -949,7 +949,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	}
 	
 	
-	public synchronized Response incrementProjectMoney(Client client, int idProject, int idReward) {
+	public synchronized Response incrementProjectMoney(Client client, int idProject, int idReward, int idChoice) {
 		System.out.println("incrementProjectMoney function");
 		Response temp = new Response();
 		
@@ -998,6 +998,11 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 				ps.setInt(4, idProject);
 
 				ps.execute();
+				
+				//increment choice count
+                ps = c.prepareStatement(consts.incrementCount);
+                ps.setInt(1, idChoice);
+                ps.execute();
 				
 				c.commit();
 

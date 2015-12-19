@@ -11,7 +11,7 @@ import websocket.WebSocketAnnotation;
 
 public class DonateBean {
 
-	private String rewardID;
+	private String rewardID, choiceID;
 	private String projectID, administrator, projectName, donationString;
 	private int donation;
 	private RMIServerInterface server;
@@ -28,7 +28,7 @@ public class DonateBean {
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			try {
 				System.out.println("username: "+username + " :projectID: "+projectID+" rewardID: "+rewardID);
-				resp = server.incrementProjectMoney(new Client(username, null), Integer.parseInt(projectID),Integer.parseInt(rewardID));
+				resp = server.incrementProjectMoney(new Client(username, null), Integer.parseInt(projectID),Integer.parseInt(rewardID), Integer.parseInt(choiceID));
 				System.out.println("After project increment money");
 				resp2 = server.getAdministrator(Integer.parseInt(projectID));
 				administrator = resp2.getInfo().get(0);
@@ -72,6 +72,14 @@ public class DonateBean {
 
 	public void setProjectID(String projectID) {
 		this.projectID = projectID;
+	}
+
+	public String getChoiceID() {
+		return choiceID;
+	}
+
+	public void setChoiceID(String choiceID) {
+		this.choiceID = choiceID;
 	}
 
 
