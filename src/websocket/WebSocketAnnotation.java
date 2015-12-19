@@ -11,14 +11,16 @@ import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnError;
 import javax.websocket.Session;
+import javax.servlet.http.HttpSession;
 import javax.websocket.*;
 
 
-@ServerEndpoint(value = "/ws")
+@ServerEndpoint(value = "/ws" , configurator = GetHttpSessionConfigurator.class)
 public class WebSocketAnnotation {
     private static final AtomicInteger sequence = new AtomicInteger(1);
     private final String username;
     private Session session;
+    private HttpSession sessionHTTP;
     private Map<String, Object> sessionM;
     private static final Set<WebSocketAnnotation> connections = new CopyOnWriteArraySet < >();
     
@@ -28,11 +30,20 @@ public class WebSocketAnnotation {
     }
 
     @OnOpen
-    public void start(Session session) {
+    public void start(Session session, EndpointConfig config) {
         this.session = session;
+        this.sessionHTTP = (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
         connections.add(this);
+        if (this.sessionHTTP!=null)
+            System.out.println("here");
+            //this.username = ((AuthenticationBean)this.sessionHTTP.getAttribute("authenticationBean")).getUsername();
+            
+            
+
         String message = "*" + username + "* connected.";
+        
         System.out.println(message);
+        
         
         //newDonation(	"hugo", 	"joao", 	200, 	"project#1");
         //newDonation(	"joao", 	"hugo", 	100, 	"project#2");

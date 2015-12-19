@@ -43,13 +43,38 @@ public class CreateProjectBean{
     private ArrayList <Message> messages = new ArrayList<>();
     
     private String question;
-    private ArrayList<String> answers;
+    private ArrayList<String> answers = new ArrayList<String>();
+    private String answers1, answers2;
     
    
 	
 	//public Configs configs = new Configs();	
 	
 	
+	public String getAnswers1() {
+		return answers1;
+	}
+
+
+
+	public void setAnswers1(String answers1) {
+		this.answers1 = answers1;
+	}
+
+
+
+	public String getAnswers2() {
+		return answers2;
+	}
+
+
+
+	public void setAnswers2(String answers2) {
+		this.answers2 = answers2;
+	}
+
+
+
 	public int insertProject(String username){
 		System.out.println("getProjects");
 		//hostname = configs.getServer1();
@@ -60,6 +85,9 @@ public class CreateProjectBean{
 			aux = new Reward(rewardsType.get(i), Integer.parseInt(rewardsValue.get(i)));
 			rewards.add(aux);
 		}
+		System.out.println(rewards);
+		answers.add(answers1);
+		answers.add(answers2);
 		System.out.println("name: "+name);
 		System.out.println("rewards: "+rewards);
 		choices = new Answer(question, answers);
