@@ -93,6 +93,36 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		new RMIServer();
 	}
 	
+	public Response updateOnlineUsers(int choice, String username)
+	{
+		Response temp = new Response();
+		
+		PreparedStatement ps; 
+		try {
+			if(choice==0)
+			{
+				ps = c.prepareStatement(consts.removeOnlineUser);
+			}
+			else{
+				ps = c.prepareStatement(consts.addOnlineUser);
+			}
+			
+			ps.setString(1, username);
+			
+			c.setAutoCommit(false);
+			ps.execute();
+			c.commit();
+			
+			temp.setSuccess(true);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			temp.setSuccess(false);
+		}
+		
+		return temp;
+		
+	}
 	
 	//hugo
 	public Response getAdministrator(int projectID) {
@@ -343,6 +373,8 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		createTable(consts.choicesTableCreation);
 		createTable(consts.clientRewardsTableCreation);
 		createTable(consts.messagesTableCreation);
+		createTable(consts.onlineUsersTableCreation);
+		
 
 	}
 
