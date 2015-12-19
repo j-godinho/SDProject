@@ -25,9 +25,9 @@
 
 	<s:text name="Register" />
 	<s:form action="registration" method="post">
-		<s:textfield name="registrationBean.username" />
-		<s:password name="registrationBean.password1" />
-		<s:password name="registrationBean.password2" />
+		<s:textfield name="registrationBean.username" placeholder="Username"/>
+		<s:password name="registrationBean.password1" placeholder="Password1"/>
+		<s:password name="registrationBean.password2" placeholder="Password2"/>
 		<s:submit value="Register" />
 	</s:form>
 </body>
