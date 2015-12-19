@@ -75,6 +75,7 @@ public class WebSocketAnnotation {
 
     private void sendMessage(String text, int option, String usernameToSend) {
     	for(WebSocketAnnotation client: connections){
+    		System.out.println("Client: "+client.username);
     		try {
     			synchronized(client){
     				if(option==1)
@@ -86,6 +87,7 @@ public class WebSocketAnnotation {
     				{
     					if(client.username.equals(usernameToSend))
     					{
+    						
     						client.session.getBasicRemote().sendText(text);
     					}
     				}

@@ -54,6 +54,7 @@ public class CallbackAction extends ActionSupport implements SessionAware {
         else
         {
         	session.put("username", resp.getInfo().get(0));
+        	getUserBean().login(resp.getInfo().get(0));
         }
         
         return SUCCESS;
