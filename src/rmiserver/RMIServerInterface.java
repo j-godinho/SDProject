@@ -5,8 +5,6 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 import java.util.ArrayList;
 
-import com.github.scribejava.core.oauth.OAuthService;
-
 import common.Answer;
 import common.Client;
 import common.Project;
