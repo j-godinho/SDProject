@@ -43,7 +43,7 @@ public class RewardsBean {
 				resp = server.getClientRewards(new Client(username, null));
 				if (resp.isSuccess()) {
 					if (!resp.getInfo().isEmpty()) {
-						rewards = resp.getInfo();
+						rewards = pretty(resp.getInfo());
 						System.out.println("Rewards: " + rewards);
 					}
 
@@ -57,6 +57,30 @@ public class RewardsBean {
 		} catch (NotBoundException | RemoteException e) {
 			e.printStackTrace(); // what happens *after* we reach this line?
 		}
+	}
+	
+	private ArrayList<String> pretty(ArrayList <String> array)
+	{
+		
+		ArrayList <String> temp = new ArrayList <String>();
+        int availableRewards = ((array.size()+1) - 2)/3;
+        int res = 1;
+        if(!array.isEmpty()){
+            if(availableRewards==0)
+            {
+                System.out.println("No rewards available");
+            }
+            else {
+                System.out.println("Rewards available:");
+                for (int i = 0; i < availableRewards; i++) {
+                	temp.add("Description: "+ array.get(res));
+                	temp.add("Value: "+ array.get(res+1));
+                	temp.add("ProjectID: "+ array.get(res+2));
+                    res += 3;
+                }
+            }
+        }
+        return temp;
 	}
 
 	public ArrayList<String> getRewards() {
