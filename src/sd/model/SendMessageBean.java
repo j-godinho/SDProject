@@ -66,7 +66,7 @@ public class SendMessageBean {
 				resp = server.listProjects(0);
 				if (resp.isSuccess()) {
 					if (!resp.getInfo().isEmpty()) {
-						projects = resp.getInfo();
+						projects = pretty(resp.getInfo());
 					} else {
 						projects.add("NENHUM");
 					}
@@ -84,6 +84,23 @@ public class SendMessageBean {
 		// projects = server.getAvailableProjects();
 		System.out.println("projects: " + projects);
 		return projects;
+	}
+	
+	private ArrayList<String> pretty(ArrayList <String> array)
+	{
+		
+		ArrayList <String> temp = new ArrayList <String>();
+        int numProj = (array.size() + 1) / 5;
+        int res = 0;
+        for (int i = 0; i < numProj; i++) {
+        	temp.add("ID: "+ array.get(res));
+        	temp.add("NAME: "+ array.get(res+1));
+        	temp.add("DATE: "+ array.get(res+2));
+        	temp.add("MONEY: "+array.get(res+3));
+        	temp.add("GOAL: "+ array.get(res+4));
+            res += 5;
+        }
+        return temp;
 	}
 
 	public String getMessage() {
