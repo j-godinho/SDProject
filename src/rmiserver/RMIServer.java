@@ -96,15 +96,17 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	public Response updateOnlineUsers(int choice, String username)
 	{
 		Response temp = new Response();
-		
+		System.out.println("UPDATE ONLINE USERS FUNCTION");
 		PreparedStatement ps; 
 		try {
 			if(choice==0)
 			{
 				ps = c.prepareStatement(consts.removeOnlineUser);
+				System.out.println("remove");
 			}
 			else{
 				ps = c.prepareStatement(consts.addOnlineUser);
+				System.out.println("add");
 			}
 			
 			ps.setString(1, username);

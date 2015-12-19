@@ -51,8 +51,8 @@ public class Authentication extends ActionSupport implements SessionAware {
 	}
 
 	public String logout() throws RemoteException {
-		session.clear();
 		getAuthenticationBean().logout();
+		session.clear();
 		// session.invalidate();
 
 		return SUCCESS;
