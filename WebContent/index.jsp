@@ -13,7 +13,7 @@
         var websocket = null;
 
         window.onload = function() { // URI = ws://10.16.0.165:8080/WebSocket/ws
-            connect('ws://' + window.location.host + '/SDProjectGit/ws');
+            connect('ws://' + window.location.host + '/Proj2/ws');
         }
 
         function connect(host) { // connect to the host websocket
