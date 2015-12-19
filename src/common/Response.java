@@ -12,7 +12,6 @@ public class Response implements Serializable {
 	private int money;
 	private Project project;
 	private boolean success;
-	private Token accessToken;
 
 	public Response() {
 	}
@@ -22,14 +21,6 @@ public class Response implements Serializable {
 		
 	public Project getProject() {
 		return project;
-	}
-
-	public Token getAccessToken() {
-		return accessToken;
-	}
-
-	public void setAccessToken(Token accessToken) {
-		this.accessToken = accessToken;
 	}
 
 	public void setProject(Project project) {

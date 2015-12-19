@@ -262,8 +262,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 		//get acessToken
 		Verifier verifier = new Verifier(authVerifier);
 		accessToken = service.getAccessToken(requestToken, verifier);
-		
-		resp.setAccessToken(accessToken);
+
 		
         //get username info
 		System.out.println("Get Username Info");
