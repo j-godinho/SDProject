@@ -53,7 +53,7 @@ public class OlderProjects {
 				resp = server.listProjects(1);
 				if (resp.isSuccess()) {
 					if (!resp.getInfo().isEmpty()) {
-						projects = resp.getInfo();
+						projects = pretty(resp.getInfo());
 					} else {
 						projects.add("NENHUM");
 					}
