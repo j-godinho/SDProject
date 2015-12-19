@@ -1,4 +1,5 @@
 package websocket;
+import sd.model.*;
 
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -18,16 +19,16 @@ import javax.websocket.*;
 @ServerEndpoint(value = "/ws" , configurator = GetHttpSessionConfigurator.class)
 public class WebSocketAnnotation {
     private static final AtomicInteger sequence = new AtomicInteger(1);
-    private final String username;
+    private String username;
     private Session session;
     private HttpSession sessionHTTP;
     private Map<String, Object> sessionM;
     private static final Set<WebSocketAnnotation> connections = new CopyOnWriteArraySet < >();
     
-    public WebSocketAnnotation() {
+    /*public WebSocketAnnotation() {
     	//this.username = (String) sessionM.get("username");
     	this.username = "hugo";
-    }
+    }*/
 
     @OnOpen
     public void start(Session session, EndpointConfig config) {
@@ -37,6 +38,7 @@ public class WebSocketAnnotation {
         if (this.sessionHTTP!=null)
             System.out.println("here");
             //this.username = ((AuthenticationBean)this.sessionHTTP.getAttribute("authenticationBean")).getUsername();
+           
             
             
 

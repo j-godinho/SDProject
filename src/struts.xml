@@ -146,8 +146,7 @@
 			<result name="success">/listProjectsMessage.jsp</result>
 		</action>
 		
-		<action name="sendMessageProject" class="sd.action.SendMessageAction"
-			method="execute">
+		<action name="sendMessageProject" class="sd.action.SendMessageAction" method="execute">
 			<interceptor-ref name="interceptor" />
 			<result name="success">/index.jsp</result>
 		</action>

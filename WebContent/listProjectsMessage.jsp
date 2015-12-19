@@ -31,7 +31,7 @@
 
 	<s:text name="Send message" />
 	<br>
-	<s:form action="projDetails" method="post">
+	<s:form action="sendMessageProject" method="post">
 	    ProjectID: 	<s:textfield name="sendMessageBean.projectID" type="string" />
 	    Message: 	<s:textfield name="sendMessageBean.message" size="100" />
 		<s:submit value="Send" />

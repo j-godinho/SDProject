@@ -18,7 +18,7 @@ public class SendMessageBean {
 	private WebSocketAnnotation wsAnnotation = new WebSocketAnnotation();
 
 	public int send(String username) throws RemoteException {
-
+		System.out.println("send SENDMESSAGEBEAN");
 		Response resp = new Response();
 		from = username;
 		to = "hugo";

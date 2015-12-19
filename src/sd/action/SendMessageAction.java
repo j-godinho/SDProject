@@ -25,7 +25,8 @@ public class SendMessageAction extends ActionSupport implements SessionAware {
 
 		// setSendMessageBean(new
 		// SendMessageBean((String)session.get("username")));
-
+		System.out.println("execute message action");
+		
 		if (getSendMessageBean().send((String) session.get("username")) == 0) {
 			return SUCCESS;
 		} else {
