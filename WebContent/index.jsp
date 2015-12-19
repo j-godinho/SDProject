@@ -135,13 +135,6 @@
 	</c:if>
 	<hr>
 
-
-	<s:text name="Prime numbers needed?" />
-	<s:form action="primes" method="post">
-		<s:textfield name="primesBean.number" />
-		<s:submit />
-	</s:form>
-
 	<c:if test="${session.username!= null}">
 		
 		
