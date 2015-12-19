@@ -72,9 +72,7 @@
     		<result>/updateRewards.jsp</result>
     	</action>
 
-		<action name="donateMoney" class="">
-			<result>/donateMoney.jsp</result>
-		</action>
+		
 		
 		<action name="chat" class="">
 			<result>/chat.html</result>
@@ -102,14 +100,7 @@
 		<action name="registration" class="sd.action.Registration"
 			method="execute">
 			<result name="success">/index.jsp</result>
-		</action>
-
-		<action name="sendMessageProject" class="sd.action.SendMessageAction"
-			method="execute">
-			<interceptor-ref name="interceptor" />
-			<result name="success">/index.jsp</result>
-		</action>
-		
+		</action>		
 		
 		
 		<action name="createProjectSend" class="sd.action.CreateProjectAction" method="execute">
@@ -127,10 +118,6 @@
 		
 		<action name="consultAccount" class="sd.action.AccountMoneyAction"
 			method="execute">
-			<result name="success">/index.jsp</result>
-		</action>
-
-		<action name="donate" class="sd.action.DonateAction" method="execute">
 			<result name="success">/index.jsp</result>
 		</action>
 		
@@ -155,7 +142,22 @@
 			<result name="success">/projDetails.jsp</result>
 		</action>
 		
-
+		<action name="sendMessageList" class="sd.action.SendMessageAction" method="list">
+			<result name="success">/listProjectsMessage.jsp</result>
+		</action>
+		
+		<action name="sendMessageProject" class="sd.action.SendMessageAction"
+			method="execute">
+			<interceptor-ref name="interceptor" />
+			<result name="success">/index.jsp</result>
+		</action>
+		
+		<action name="donateMoney" class="">
+			<result>/donateMoney.jsp</result>
+		</action>
+		
+		
+		
 		<action name="loginTumblr" class="sd.action.LoginTumblrAction" method="execute">
 			<result name="redirect" type="redirect">${authorizationURL}</result>
 		</action>

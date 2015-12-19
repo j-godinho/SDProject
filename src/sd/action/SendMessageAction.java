@@ -2,6 +2,7 @@ package sd.action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import sd.model.ProjectDetailsBean;
 import sd.model.SendMessageBean;
 
 import java.util.Map;
@@ -32,6 +33,12 @@ public class SendMessageAction extends ActionSupport implements SessionAware {
 
 		}
 
+		return SUCCESS;
+	}
+	public String list() throws Exception {
+		System.out.println("listProjectDetails");
+		setSendMessageBean(new SendMessageBean());
+		getSendMessageBean().getProjects();
 		return SUCCESS;
 	}
 

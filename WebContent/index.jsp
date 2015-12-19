@@ -167,7 +167,7 @@
 			<input type="submit" value="Donate Money">
 		</s:form>
 		
-		<s:form action="sendMessage" method="get">
+		<s:form action="sendMessageList" method="get">
 			<input type="submit" value="Send Message To Project">
 		</s:form>
 		<s:form action="createProject" method="get">
