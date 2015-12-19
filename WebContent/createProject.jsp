@@ -18,9 +18,9 @@
 	  Project Name: <s:textfield name="createProjectBean.name"/><br>
 	  Description: <s:textfield name="createProjectBean.description"/><br>
 	  Main Goal: <s:textfield name="createProjectBean.mainGoalString"/><br>
-	  Deadline: <s:textfield name="createProjectBean.yearString"/>
-	  			<s:textfield name="createProjectBean.monthString"/>
-	  			<s:textfield name="createProjectBean.dayString"/><br>
+	  Deadline: <s:textfield name="createProjectBean.yearString" placeholder="Year"/>
+	  			<s:textfield name="createProjectBean.monthString" placeholder="Month"/>
+	  			<s:textfield name="createProjectBean.dayString" placeholder="Day"/><br>
 	  RewardType: <s:textfield name ="createProjectBean.rewardType"/><br>
 	  RewardValue: <s:textfield name ="createProjectBean.rewardsValue"/><br>
 	  Question: <s:textfield name ="createProjectBean.question"/><br>
