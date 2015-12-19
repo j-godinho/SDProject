@@ -403,6 +403,7 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 			ResultSet result = ps.executeQuery();
 
 			temp.setInfo(toArrayList(result));
+			System.out.println("Temp: " + temp.getInfo().toString());
 			temp.setSuccess(true);
 		} catch (SQLException e) {
 			e.printStackTrace();

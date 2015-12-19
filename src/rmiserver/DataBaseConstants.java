@@ -54,7 +54,8 @@ public final class DataBaseConstants {
             "RECEIVED   INT                 NOT NULL); ";
 
     String onlineUsersTableCreation="CREATE TABLE IF NOT EXISTS ONLINEUSERS "+
-    		 "(NAME 	TEXT				PRIMARY KEY	NOT NULL);";
+    		 "(ID 		SERIAL		        PRIMARY KEY,"  +
+    		 "NAME 		TEXT				NOT NULL);";
 
     
     //CHOICES FUNCTONS
@@ -147,7 +148,7 @@ public final class DataBaseConstants {
     String getProjectMessages      = "SELECT MESSAGES.ID, PROJECTS.NAME, SENDER, TEXT FROM MESSAGES, PROJECTS WHERE PROJECTID=? AND RECEIVER = (SELECT ADMIN FROM PROJECTS WHERE PROJECTS.ID=?);";
     String getClientMessages       = "SELECT * FROM MESSAGES WHERE MESSAGES.RECEIVER=?;";
     //////////////////////////////////////
-    String getClientProjects        ="SELECT ID, NAME, DEADLINE, MONEY, MAINGOAL FROM PROJECTS WHERE PROJECTS.ADMIN=?;";
+    String getClientProjects        ="SELECT ID, NAME, DEADLINE, MONEY, MAINGOAL FROM PROJECTS WHERE ADMIN=?;";
 
 
     //Fim do Projecto
