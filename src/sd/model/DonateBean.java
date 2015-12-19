@@ -39,6 +39,7 @@ public class DonateBean {
 				//donation = server.getDonation(rewardID);
 				//projectName = server.getProjectName(projectID);
 				if (resp.isSuccess()) {
+					
 					wsAnnotation.newDonation(username, administrator, donation, projectName);
 					System.out.println("Sucesso");
 					return 0;

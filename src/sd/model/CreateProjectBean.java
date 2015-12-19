@@ -309,6 +309,7 @@ public class CreateProjectBean{
 
 
 	public void setQuestion(String question) {
+		System.out.println("setQuestion: "+question);
 		this.question = question;
 	}
 	
