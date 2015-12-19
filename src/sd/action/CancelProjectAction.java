@@ -17,20 +17,21 @@ public class CancelProjectAction extends ActionSupport implements SessionAware {
 
 	@Override
 	public String execute() {
-
-		if(getCancelProjectBean().cancelProject((String) session.get("username")) == 1){
-			
-			return SUCCESS;
-		}
+		setCancelProjectBean(new CancelProjectBean());
+		getCancelProjectBean().getProjects((String)session.get("username"));
 		return SUCCESS;
 		
 	}
-	public String list() throws Exception {
-		System.out.println("listProjectDetails");
-		setCancelProjectBean(new CancelProjectBean());
-		getCancelProjectBean().getProjects();
-		return SUCCESS;
+
+	public String cancel()
+	{
+			if(getCancelProjectBean().cancelProject((String) session.get("username")) == 1){
+				return SUCCESS;
+			}
+			return SUCCESS;
 	}
+	
+
 
 	public CancelProjectBean getCancelProjectBean() {
 		return cancelProjectBean;

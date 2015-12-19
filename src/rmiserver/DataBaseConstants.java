@@ -66,7 +66,7 @@ public final class DataBaseConstants {
     String getChoices = "SELECT ID, CHOICE, COUNT from CHOICES where PROJECTID=?;";
 
 
-
+    
 
     String dropTables = "DROP TABLE  PROJECTS;";
 

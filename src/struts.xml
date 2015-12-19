@@ -144,10 +144,10 @@
 			<result name="success">/index.jsp</result>
 		</action>
 		
-		<action name="listcancelProject" class="sd.action.CancelProjectAction" method="list">
+		<action name="listcancelProject" class="sd.action.CancelProjectAction" method="execute">
 			<result name="success">/listProjCancel.jsp</result>
 		</action>
-		<action name="cancelProject" class="sd.action.CancelProjectAction" method="execute">
+		<action name="cancelProject" class="sd.action.CancelProjectAction" method="cancel">
 			<result name="success">/index.jsp</result>
 		</action>
 		

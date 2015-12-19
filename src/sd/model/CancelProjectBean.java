@@ -23,6 +23,7 @@ public class CancelProjectBean {
 	private Registry registry;
 	private String choice;
 	private ArrayList<String> rewards;
+	private ArrayList<String> projects;
 	// public Configs configs = new Configs();
 
 	
@@ -58,25 +59,24 @@ public class CancelProjectBean {
 		}
 		return 0;
 	}
-	public ArrayList<String> getProjects() {
+	public int getProjects(String username) {
 		System.out.println("getProjects DETAILS");
 		// hostname = configs.getServer1();
 		// hostname2 = configs.getServer2();
 		// registryNumber= configs.getRmi_port();
-		ArrayList<String> projects = new ArrayList<String>();
 		Response resp = new Response();
 		try {
 			// registry = LocateRegistry.getRegistry(configs.getRmi_port());
 			// server = (RMIServerInterface) Naming.lookup("RMIServer");
 			server = (RMIServerInterface) LocateRegistry.getRegistry("localhost", 7000).lookup("RMIServer");
 			System.out.println("RMI connected");
-			Client client = new Client("hugo", null);
+			Client client = new Client(username, null);
 			try {
 				//resp = server.listProjects(0);
 				resp = server.getClientProjects(client);
 				if (resp.isSuccess()) {
 					if (!resp.getInfo().isEmpty()) {
-						projects = resp.getInfo();
+						projects = pretty(resp.getInfo());
 					} else {
 						projects.add("NENHUM");
 					}
@@ -93,7 +93,7 @@ public class CancelProjectBean {
 		}
 		// projects = server.getAvailableProjects();
 		System.out.println("projects: " + projects);
-		return projects;
+		return 1;
 	}
 	public String getChoice() {
 		return choice;
@@ -110,5 +110,30 @@ public class CancelProjectBean {
 	public void setRewards(ArrayList<String> rewards) {
 		this.rewards = rewards;
 	}
+	public ArrayList<String> getProjects() {
+		return projects;
+	}
+	public void setProjects(ArrayList<String> projects) {
+		this.projects = projects;
+	}
+	
+	private ArrayList<String> pretty(ArrayList <String> array)
+	{
+		
+		ArrayList <String> temp = new ArrayList <String>();
+        int numProj = (array.size() + 1) / 5;
+        int res = 0;
+        for (int i = 0; i < numProj; i++) {
+        	temp.add("ID: "+ array.get(res));
+        	temp.add("NAME: "+ array.get(res+1));
+        	temp.add("DATE: "+ array.get(res+2));
+        	temp.add("MONEY: "+array.get(res+3));
+        	temp.add("GOAL: "+ array.get(res+4));
+            res += 5;
+        }
+        return temp;
+	}
+	
+	
 
 }
