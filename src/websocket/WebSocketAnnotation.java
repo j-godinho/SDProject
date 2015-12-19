@@ -27,7 +27,7 @@ public class WebSocketAnnotation {
     
     public WebSocketAnnotation() {
     	//this.username = (String) sessionM.get("username");
-    	this.username = "hugo";
+    	this.username = "joao";
     }
 
     @OnOpen

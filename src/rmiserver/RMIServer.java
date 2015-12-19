@@ -882,6 +882,10 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 				id = result.getString("POSTID");
 			}
 			System.out.println("ReblogKey: " + reblogKey + "| postID: "+ id);
+			if(reblogKey==null || id==null)
+			{
+				return 0;
+			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -964,13 +968,9 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 				
 				c.commit();
 
-				if(likeProjectPost(idProject)==0)
-				{
-					temp.setSuccess(false);
-					return temp;
-				}
+				//like projectPost
+				likeProjectPost(idProject);
 				
-				ps.close();
 
 				temp.setSuccess(true);
 			} else {
