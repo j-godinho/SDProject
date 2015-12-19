@@ -78,4 +78,11 @@ public interface RMIServerInterface extends Remote {
 	Response registerUserTumblr(Client client) throws RemoteException;
 	String getAuthorizationURL() throws RemoteException;
 	Response loginTumblr(String authVerifier) throws RemoteException;
+	
+	//hugo
+	Response getAdministrator(int projectID) throws RemoteException;
+	Response getDonation(int rewardID) throws RemoteException;
+	Response getProjectName(int projectID) throws RemoteException;
+	
+	
 }

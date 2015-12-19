@@ -26,7 +26,7 @@ public class DonateBean {
 			try {
 				System.out.println("username: "+username + " :projectID: "+projectID+" rewardID: "+rewardID);
 				resp = server.incrementProjectMoney(new Client(username, null), Integer.parseInt(projectID),Integer.parseInt(rewardID));
-				//administratos = server.getAdministrator(projectID);
+				//administrator = server.getAdministrator(projectID);
 				//donation = server.getDonation(rewardID);
 				//projectName = server.getProjectName(projectID);
 				if (resp.isSuccess()) {

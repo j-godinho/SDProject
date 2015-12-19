@@ -95,6 +95,66 @@ public class RMIServer extends UnicastRemoteObject implements RMIServerInterface
 	}
 	
 	
+	//hugo
+	public Response getAdministrator(int projectID) {
+		Response temp = new Response();
+		try {
+			PreparedStatement ps = c.prepareStatement(consts.getAdmin);
+			ps.setInt(1, projectID);
+			
+			ResultSet result= ps.executeQuery();
+			temp.setInfo(toArrayList(result));
+			
+			temp.setSuccess(true);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			temp.setSuccess(false);
+		}
+		
+		return temp;
+	}
+	
+	public Response getDonation(int rewardID){
+		Response temp = new Response();
+		try {
+			PreparedStatement ps = c.prepareStatement(consts.getValue);
+			ps.setInt(1, rewardID);
+			
+			ResultSet result= ps.executeQuery();
+			temp.setInfo(toArrayList(result));
+			
+			temp.setSuccess(true);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			temp.setSuccess(false);
+		}
+		
+		return temp;
+	}
+	
+	public Response getProjectName(int projectID) {
+		Response temp = new Response();
+		try {
+			PreparedStatement ps = c.prepareStatement(consts.getProjectName);
+			ps.setInt(1, projectID);
+			
+			ResultSet result= ps.executeQuery();
+			temp.setInfo(toArrayList(result));
+			
+			temp.setSuccess(true);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			temp.setSuccess(false);
+		}
+		
+		return temp;
+	}
+	
+	//
+	
 	//TUMBLR FUNCTIONS
 
     
