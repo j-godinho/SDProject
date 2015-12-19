@@ -29,6 +29,7 @@ public class DonateBean {
 			try {
 				System.out.println("username: "+username + " :projectID: "+projectID+" rewardID: "+rewardID);
 				resp = server.incrementProjectMoney(new Client(username, null), Integer.parseInt(projectID),Integer.parseInt(rewardID));
+				System.out.println("After project increment money");
 				resp2 = server.getAdministrator(Integer.parseInt(projectID));
 				administrator = resp2.getInfo().get(0);
 				resp3 = server.getDonation(Integer.parseInt(rewardID));
@@ -39,8 +40,7 @@ public class DonateBean {
 				//donation = server.getDonation(rewardID);
 				//projectName = server.getProjectName(projectID);
 				if (resp.isSuccess()) {
-					
-					wsAnnotation.newDonation(username, administrator, donation, projectName);
+					wsAnnotation.newDonation(username, administrator, Integer.parseInt(donationString), projectName);
 					System.out.println("Sucesso");
 					return 0;
 				}
