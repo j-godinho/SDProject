@@ -181,10 +181,6 @@
 			<input type="submit" value="Answer Messages">
 		</s:form>
 		
-		<s:form action="chat" method="get">
-			<input type="submit" value="Chat">
-		</s:form>
-		
 		<s:form action="listcancelProject" method="get">
 			<input type="submit" value ="Cancel Project"/>
 		</s:form>

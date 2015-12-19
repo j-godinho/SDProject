@@ -32,7 +32,7 @@
 	<s:text name="Cancel Projects" />
 	<br>
 	<s:form action="cancelProject" method="post">
-	    ProjectID: 	<s:textfield name="cancelProjectBean.choice" type="string" />
+	    ProjectID: 	<s:textfield name="cancelProjectBean.choice" type="number" />
 		<s:submit value="Send" />
 	</s:form>
 

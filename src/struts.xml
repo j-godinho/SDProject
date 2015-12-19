@@ -72,13 +72,6 @@
     		<result>/updateRewards.jsp</result>
     	</action>
 
-		
-		
-		<action name="chat" class="">
-			<result>/chat.html</result>
-		</action>
-		
-
 		<action name="rewards" class="sd.action.RewardsAction" method="execute">
 			<interceptor-ref name="interceptor" />
 			<result name="success">/rewards.jsp</result>
